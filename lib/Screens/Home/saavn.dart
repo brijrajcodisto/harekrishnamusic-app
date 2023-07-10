@@ -1,5 +1,5 @@
 /*
- *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/Harekrishnamusic).
+ *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/harekrishnamusic-app).
  * 
  * Harekrishnamusic is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
