@@ -1,10 +1,10 @@
-import 'package:blackhole/CustomWidgets/box_switch_tile.dart';
-import 'package:blackhole/CustomWidgets/gradient_containers.dart';
-import 'package:blackhole/CustomWidgets/snackbar.dart';
-import 'package:blackhole/Helpers/backup_restore.dart';
-import 'package:blackhole/Helpers/config.dart';
-import 'package:blackhole/Helpers/picker.dart';
-import 'package:blackhole/Services/ext_storage_provider.dart';
+import 'package:Harekrishnamusic/CustomWidgets/box_switch_tile.dart';
+import 'package:Harekrishnamusic/CustomWidgets/gradient_containers.dart';
+import 'package:Harekrishnamusic/CustomWidgets/snackbar.dart';
+import 'package:Harekrishnamusic/Helpers/backup_restore.dart';
+import 'package:Harekrishnamusic/Helpers/config.dart';
+import 'package:Harekrishnamusic/Helpers/picker.dart';
+import 'package:Harekrishnamusic/Services/ext_storage_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
@@ -22,7 +22,7 @@ class _BackupAndRestorePageState extends State<BackupAndRestorePage> {
   final MyTheme currentTheme = GetIt.I<MyTheme>();
   String autoBackPath = Hive.box('settings').get(
     'autoBackPath',
-    defaultValue: '/storage/emulated/0/BlackHole/Backups',
+    defaultValue: '/storage/emulated/0/Harekrishnamusic/Backups',
   ) as String;
 
   @override
@@ -310,10 +310,10 @@ class _BackupAndRestorePageState extends State<BackupAndRestorePage> {
                 ),
                 onPressed: () async {
                   autoBackPath = await ExtStorageProvider.getExtStorage(
-                        dirName: 'BlackHole/Backups',
+                        dirName: 'Harekrishnamusic/Backups',
                         writeAccess: true,
                       ) ??
-                      '/storage/emulated/0/BlackHole/Backups';
+                      '/storage/emulated/0/Harekrishnamusic/Backups';
                   Hive.box('settings').put('autoBackPath', autoBackPath);
                   setState(
                     () {},

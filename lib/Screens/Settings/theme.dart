@@ -1,9 +1,9 @@
-import 'package:blackhole/CustomWidgets/box_switch_tile.dart';
-import 'package:blackhole/CustomWidgets/gradient_containers.dart';
-import 'package:blackhole/CustomWidgets/popup.dart';
-import 'package:blackhole/CustomWidgets/snackbar.dart';
-import 'package:blackhole/CustomWidgets/textinput_dialog.dart';
-import 'package:blackhole/Helpers/config.dart';
+import 'package:Harekrishnamusic/CustomWidgets/box_switch_tile.dart';
+import 'package:Harekrishnamusic/CustomWidgets/gradient_containers.dart';
+import 'package:Harekrishnamusic/CustomWidgets/popup.dart';
+import 'package:Harekrishnamusic/CustomWidgets/snackbar.dart';
+import 'package:Harekrishnamusic/CustomWidgets/textinput_dialog.dart';
+import 'package:Harekrishnamusic/Helpers/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';

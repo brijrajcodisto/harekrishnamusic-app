@@ -1,8 +1,8 @@
-import 'package:blackhole/CustomWidgets/copy_clipboard.dart';
-import 'package:blackhole/CustomWidgets/gradient_containers.dart';
-import 'package:blackhole/CustomWidgets/snackbar.dart';
-import 'package:blackhole/Helpers/github.dart';
-import 'package:blackhole/Helpers/update.dart';
+import 'package:Harekrishnamusic/CustomWidgets/copy_clipboard.dart';
+import 'package:Harekrishnamusic/CustomWidgets/gradient_containers.dart';
+import 'package:Harekrishnamusic/CustomWidgets/snackbar.dart';
+import 'package:Harekrishnamusic/Helpers/github.dart';
+import 'package:Harekrishnamusic/Helpers/update.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -127,7 +127,7 @@ class _AboutPageState extends State<AboutPage> {
                                       Navigator.pop(context);
                                       launchUrl(
                                         Uri.parse(
-                                          'https://sangwan5688.github.io/download/',
+                                          'https://brijrajcodisto.github.io/download/',
                                         ),
                                         mode: LaunchMode.externalApplication,
                                       );
@@ -169,7 +169,7 @@ class _AboutPageState extends State<AboutPage> {
                           Share.share(
                             '${AppLocalizations.of(
                               context,
-                            )!.shareAppText}: https://sangwan5688.github.io/',
+                            )!.shareAppText}: https://mackshost.com/',
                           );
                         },
                         dense: true,
@@ -191,7 +191,7 @@ class _AboutPageState extends State<AboutPage> {
                         onTap: () {
                           launchUrl(
                             Uri.parse(
-                              'https://www.buymeacoffee.com/ankitsangwan',
+                              'https://www.buymeacoffee.com/brijrajs',
                             ),
                             mode: LaunchMode.externalApplication,
                           );
@@ -214,7 +214,7 @@ class _AboutPageState extends State<AboutPage> {
                         isThreeLine: true,
                         onTap: () {
                           const String upiUrl =
-                              'upi://pay?pa=ankit.sangwan.5688@oksbi&pn=BlackHole';
+                              'upi://pay?pa=8850864299@upi&pn=harekrishna';
                           launchUrl(
                             Uri.parse(upiUrl),
                             mode: LaunchMode.externalApplication,
@@ -223,7 +223,7 @@ class _AboutPageState extends State<AboutPage> {
                         onLongPress: () {
                           copyToClipboard(
                             context: context,
-                            text: 'ankit.sangwan.5688@oksbi',
+                            text: '8850864299@upi',
                             displayText: AppLocalizations.of(
                               context,
                             )!
@@ -240,7 +240,7 @@ class _AboutPageState extends State<AboutPage> {
                           onPressed: () {
                             copyToClipboard(
                               context: context,
-                              text: 'ankit.sangwan.5688@oksbi',
+                              text: '8850864299@upi',
                               displayText: AppLocalizations.of(
                                 context,
                               )!
@@ -299,7 +299,7 @@ class _AboutPageState extends State<AboutPage> {
                                               Navigator.pop(context);
                                               launchUrl(
                                                 Uri.parse(
-                                                  'https://mail.google.com/mail/?extsrc=mailto&url=mailto%3A%3Fto%3Dblackholeyoucantescape%40gmail.com%26subject%3DRegarding%2520Mobile%2520App',
+                                                  'https://mail.google.com/mail/?extsrc=mailto&url=mailto%3A%3Fto%3DHarekrishnamusicyoucantescape%40gmail.com%26subject%3DRegarding%2520Mobile%2520App',
                                                 ),
                                                 mode: LaunchMode
                                                     .externalApplication,
@@ -361,7 +361,7 @@ class _AboutPageState extends State<AboutPage> {
                                               Navigator.pop(context);
                                               launchUrl(
                                                 Uri.parse(
-                                                  'https://instagram.com/sangwan5688',
+                                                  'https://instagram.com/brijrajcodisto',
                                                 ),
                                                 mode: LaunchMode
                                                     .externalApplication,
@@ -455,7 +455,7 @@ class _AboutPageState extends State<AboutPage> {
                                               Navigator.pop(context);
                                               launchUrl(
                                                 Uri.parse(
-                                                  'https://t.me/blackhole_official',
+                                                  'https://t.me/Harekrishnamusic_official',
                                                 ),
                                                 mode: LaunchMode
                                                     .externalApplication,

@@ -1,35 +1,35 @@
 /*
- *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
+ *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/Harekrishnamusic).
  * 
- * BlackHole is free software: you can redistribute it and/or modify
+ * Harekrishnamusic is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * BlackHole is distributed in the hope that it will be useful,
+ * Harekrishnamusic is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Harekrishnamusic.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Copyright (c) 2021-2022, Ankit Sangwan
+ * Copyright (c) 2021-2022, Brijraj Singh
  */
 
-import 'package:blackhole/CustomWidgets/collage.dart';
-import 'package:blackhole/CustomWidgets/custom_physics.dart';
-import 'package:blackhole/CustomWidgets/data_search.dart';
-import 'package:blackhole/CustomWidgets/download_button.dart';
-import 'package:blackhole/CustomWidgets/empty_screen.dart';
-import 'package:blackhole/CustomWidgets/gradient_containers.dart';
-import 'package:blackhole/CustomWidgets/like_button.dart';
-import 'package:blackhole/CustomWidgets/miniplayer.dart';
-import 'package:blackhole/CustomWidgets/playlist_head.dart';
-import 'package:blackhole/CustomWidgets/song_tile_trailing_menu.dart';
-import 'package:blackhole/Helpers/songs_count.dart' as songs_count;
-import 'package:blackhole/Screens/Library/show_songs.dart';
-import 'package:blackhole/Services/player_service.dart';
+import 'package:Harekrishnamusic/CustomWidgets/collage.dart';
+import 'package:Harekrishnamusic/CustomWidgets/custom_physics.dart';
+import 'package:Harekrishnamusic/CustomWidgets/data_search.dart';
+import 'package:Harekrishnamusic/CustomWidgets/download_button.dart';
+import 'package:Harekrishnamusic/CustomWidgets/empty_screen.dart';
+import 'package:Harekrishnamusic/CustomWidgets/gradient_containers.dart';
+import 'package:Harekrishnamusic/CustomWidgets/like_button.dart';
+import 'package:Harekrishnamusic/CustomWidgets/miniplayer.dart';
+import 'package:Harekrishnamusic/CustomWidgets/playlist_head.dart';
+import 'package:Harekrishnamusic/CustomWidgets/song_tile_trailing_menu.dart';
+import 'package:Harekrishnamusic/Helpers/songs_count.dart' as songs_count;
+import 'package:Harekrishnamusic/Screens/Library/show_songs.dart';
+import 'package:Harekrishnamusic/Services/player_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,39 +1,39 @@
 /*
- *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
+ *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/Harekrishnamusic).
  * 
- * BlackHole is free software: you can redistribute it and/or modify
+ * Harekrishnamusic is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * BlackHole is distributed in the hope that it will be useful,
+ * Harekrishnamusic is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Harekrishnamusic.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Copyright (c) 2021-2022, Ankit Sangwan
+ * Copyright (c) 2021-2022, Brijraj Singh
  */
 
 import 'dart:io';
 
-import 'package:blackhole/APIs/api.dart';
-import 'package:blackhole/CustomWidgets/collage.dart';
-import 'package:blackhole/CustomWidgets/horizontal_albumlist.dart';
-import 'package:blackhole/CustomWidgets/horizontal_albumlist_separated.dart';
-import 'package:blackhole/CustomWidgets/like_button.dart';
-import 'package:blackhole/CustomWidgets/on_hover.dart';
-import 'package:blackhole/CustomWidgets/snackbar.dart';
-import 'package:blackhole/CustomWidgets/song_tile_trailing_menu.dart';
-import 'package:blackhole/Helpers/extensions.dart';
-import 'package:blackhole/Helpers/format.dart';
-import 'package:blackhole/Helpers/image_resolution_modifier.dart';
-import 'package:blackhole/Screens/Common/song_list.dart';
-import 'package:blackhole/Screens/Library/liked.dart';
-import 'package:blackhole/Screens/Search/artists.dart';
-import 'package:blackhole/Services/player_service.dart';
+import 'package:Harekrishnamusic/APIs/api.dart';
+import 'package:Harekrishnamusic/CustomWidgets/collage.dart';
+import 'package:Harekrishnamusic/CustomWidgets/horizontal_albumlist.dart';
+import 'package:Harekrishnamusic/CustomWidgets/horizontal_albumlist_separated.dart';
+import 'package:Harekrishnamusic/CustomWidgets/like_button.dart';
+import 'package:Harekrishnamusic/CustomWidgets/on_hover.dart';
+import 'package:Harekrishnamusic/CustomWidgets/snackbar.dart';
+import 'package:Harekrishnamusic/CustomWidgets/song_tile_trailing_menu.dart';
+import 'package:Harekrishnamusic/Helpers/extensions.dart';
+import 'package:Harekrishnamusic/Helpers/format.dart';
+import 'package:Harekrishnamusic/Helpers/image_resolution_modifier.dart';
+import 'package:Harekrishnamusic/Screens/Common/song_list.dart';
+import 'package:Harekrishnamusic/Screens/Library/liked.dart';
+import 'package:Harekrishnamusic/Screens/Search/artists.dart';
+import 'package:Harekrishnamusic/Services/player_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -1,20 +1,20 @@
 /*
- *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
+ *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/Harekrishnamusic).
  * 
- * BlackHole is free software: you can redistribute it and/or modify
+ * Harekrishnamusic is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * BlackHole is distributed in the hope that it will be useful,
+ * Harekrishnamusic is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Harekrishnamusic.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Copyright (c) 2021-2022, Ankit Sangwan
+ * Copyright (c) 2021-2022, Brijraj Singh
  */
 
 import 'dart:async';
@@ -23,12 +23,12 @@ import 'dart:io';
 
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
-import 'package:blackhole/APIs/api.dart';
-import 'package:blackhole/Helpers/mediaitem_converter.dart';
-import 'package:blackhole/Helpers/playlist.dart';
-import 'package:blackhole/Screens/Player/audioplayer.dart';
-import 'package:blackhole/Services/isolate_service.dart';
-import 'package:blackhole/Services/yt_music.dart';
+import 'package:Harekrishnamusic/APIs/api.dart';
+import 'package:Harekrishnamusic/Helpers/mediaitem_converter.dart';
+import 'package:Harekrishnamusic/Helpers/playlist.dart';
+import 'package:Harekrishnamusic/Screens/Player/audioplayer.dart';
+import 'package:Harekrishnamusic/Services/isolate_service.dart';
+import 'package:Harekrishnamusic/Services/yt_music.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';

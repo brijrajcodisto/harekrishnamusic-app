@@ -1,46 +1,46 @@
 /*
- *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
+ *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/Harekrishnamusic).
  * 
- * BlackHole is free software: you can redistribute it and/or modify
+ * Harekrishnamusic is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * BlackHole is distributed in the hope that it will be useful,
+ * Harekrishnamusic is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Harekrishnamusic.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Copyright (c) 2021-2022, Ankit Sangwan
+ * Copyright (c) 2021-2022, Brijraj Singh
  */
 
 import 'dart:async';
 import 'dart:io';
 
 import 'package:audio_service/audio_service.dart';
-import 'package:blackhole/Helpers/config.dart';
-import 'package:blackhole/Helpers/handle_native.dart';
-import 'package:blackhole/Helpers/import_export_playlist.dart';
-import 'package:blackhole/Helpers/logging.dart';
-import 'package:blackhole/Helpers/route_handler.dart';
-import 'package:blackhole/Screens/About/about.dart';
-import 'package:blackhole/Screens/Home/home.dart';
-import 'package:blackhole/Screens/Library/downloads.dart';
-import 'package:blackhole/Screens/Library/nowplaying.dart';
-import 'package:blackhole/Screens/Library/playlists.dart';
-import 'package:blackhole/Screens/Library/recent.dart';
-import 'package:blackhole/Screens/Library/stats.dart';
-import 'package:blackhole/Screens/Login/auth.dart';
-import 'package:blackhole/Screens/Login/pref.dart';
-import 'package:blackhole/Screens/Player/audioplayer.dart';
-import 'package:blackhole/Screens/Settings/new_settings_page.dart';
-import 'package:blackhole/Services/audio_service.dart';
-import 'package:blackhole/constants/constants.dart';
-import 'package:blackhole/constants/languagecodes.dart';
-import 'package:blackhole/theme/app_theme.dart';
+import 'package:Harekrishnamusic/Helpers/config.dart';
+import 'package:Harekrishnamusic/Helpers/handle_native.dart';
+import 'package:Harekrishnamusic/Helpers/import_export_playlist.dart';
+import 'package:Harekrishnamusic/Helpers/logging.dart';
+import 'package:Harekrishnamusic/Helpers/route_handler.dart';
+import 'package:Harekrishnamusic/Screens/About/about.dart';
+import 'package:Harekrishnamusic/Screens/Home/home.dart';
+import 'package:Harekrishnamusic/Screens/Library/downloads.dart';
+import 'package:Harekrishnamusic/Screens/Library/nowplaying.dart';
+import 'package:Harekrishnamusic/Screens/Library/playlists.dart';
+import 'package:Harekrishnamusic/Screens/Library/recent.dart';
+import 'package:Harekrishnamusic/Screens/Library/stats.dart';
+import 'package:Harekrishnamusic/Screens/Login/auth.dart';
+import 'package:Harekrishnamusic/Screens/Login/pref.dart';
+import 'package:Harekrishnamusic/Screens/Player/audioplayer.dart';
+import 'package:Harekrishnamusic/Screens/Settings/new_settings_page.dart';
+import 'package:Harekrishnamusic/Services/audio_service.dart';
+import 'package:Harekrishnamusic/constants/constants.dart';
+import 'package:Harekrishnamusic/constants/languagecodes.dart';
+import 'package:Harekrishnamusic/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -59,7 +59,7 @@ Future<void> main() async {
   Paint.enableDithering = true;
 
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    await Hive.initFlutter('BlackHole');
+    await Hive.initFlutter('Harekrishnamusic');
   } else {
     await Hive.initFlutter();
   }
@@ -102,8 +102,8 @@ Future<void> startService() async {
   final AudioPlayerHandler audioHandler = await AudioService.init(
     builder: () => AudioPlayerHandlerImpl(),
     config: AudioServiceConfig(
-      androidNotificationChannelId: 'com.shadow.blackhole.channel.audio',
-      androidNotificationChannelName: 'BlackHole',
+      androidNotificationChannelId: 'com.shadow.Harekrishnamusic.channel.audio',
+      androidNotificationChannelName: 'Harekrishnamusic',
       androidNotificationIcon: 'drawable/ic_stat_music_note',
       androidShowNotificationBadge: true,
       androidStopForegroundOnPause: false,
@@ -123,8 +123,8 @@ Future<void> openHiveBox(String boxName, {bool limit = false}) async {
     File dbFile = File('$dirPath/$boxName.hive');
     File lockFile = File('$dirPath/$boxName.lock');
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      dbFile = File('$dirPath/BlackHole/$boxName.hive');
-      lockFile = File('$dirPath/BlackHole/$boxName.lock');
+      dbFile = File('$dirPath/Harekrishnamusic/$boxName.hive');
+      lockFile = File('$dirPath/Harekrishnamusic/$boxName.lock');
     }
     await dbFile.delete();
     await lockFile.delete();
@@ -159,7 +159,7 @@ Future<void> backgroundCallback(Uri? data) async {
     //   'subtitle',
     //   audioHandler?.mediaItem.value?.displaySubtitle,
     // );
-    // await HomeWidget.updateWidget(name: 'BlackHoleMusicWidget');
+    // await HomeWidget.updateWidget(name: 'HarekrishnamusicMusicWidget');
   }
 }
 
@@ -188,7 +188,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    HomeWidget.setAppGroupId('com.shadow.blackhole');
+    HomeWidget.setAppGroupId('com.shadow.Harekrishnamusic');
     HomeWidget.registerBackgroundCallback(backgroundCallback);
     final String systemLangCode = Platform.localeName.substring(0, 2);
     if (LanguageCodes.languageCodes.values.contains(systemLangCode)) {
@@ -322,8 +322,8 @@ class _MyAppState extends State<MyApp> {
                     : Brightness.dark,
       ),
       child: MaterialApp(
-        title: 'BlackHole',
-        restorationScopeId: 'blackhole',
+        title: 'Harekrishnamusic',
+        restorationScopeId: 'Harekrishnamusic',
         debugShowCheckedModeBanner: false,
         themeMode: AppTheme.themeMode,
         theme: AppTheme.lightTheme(

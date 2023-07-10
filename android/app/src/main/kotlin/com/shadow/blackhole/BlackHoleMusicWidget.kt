@@ -1,4 +1,4 @@
-package com.shadow.blackhole
+package com.shadow.Harekrishnamusic
 
 import MainActivity
 import android.appwidget.AppWidgetManager
@@ -13,7 +13,7 @@ import es.antonborri.home_widget.HomeWidgetProvider
 /**
  * Implementation of App Widget functionality.
  */
-class BlackHoleMusicWidget : HomeWidgetProvider() {
+class HarekrishnamusicMusicWidget : HomeWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray, widgetData: SharedPreferences) {
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
@@ -37,19 +37,19 @@ internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManage
 
     val skipNextIntent = HomeWidgetBackgroundIntent.getBroadcast(
             context,
-            Uri.parse("blackhole://controls/skipNext")
+            Uri.parse("Harekrishnamusic://controls/skipNext")
     )
     setOnClickPendingIntent(R.id.widget_button_next, skipNextIntent)
 
     val skipPreviousIntent = HomeWidgetBackgroundIntent.getBroadcast(
             context,
-            Uri.parse("blackhole://controls/skipPrevious")
+            Uri.parse("Harekrishnamusic://controls/skipPrevious")
     )
     setOnClickPendingIntent(R.id.widget_button_prev, skipPreviousIntent)
 
     val playPauseIntent = HomeWidgetBackgroundIntent.getBroadcast(
             context,
-            Uri.parse("blackhole://controls/playPause")
+            Uri.parse("Harekrishnamusic://controls/playPause")
     )
     setOnClickPendingIntent(R.id.widget_button_play_pause, playPauseIntent)
 

@@ -1,20 +1,20 @@
 /*
- *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
+ *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/Harekrishnamusic).
  * 
- * BlackHole is free software: you can redistribute it and/or modify
+ * Harekrishnamusic is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * BlackHole is distributed in the hope that it will be useful,
+ * Harekrishnamusic is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Harekrishnamusic.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Copyright (c) 2021-2022, Ankit Sangwan
+ * Copyright (c) 2021-2022, Brijraj Singh
  */
 
 import 'dart:async';
@@ -34,7 +34,7 @@ class SpotifyApi {
   /// You can signup for spotify developer account and get your own clientID and clientSecret incase you don't want to use these
   final String clientID = '08de4eaf71904d1b95254fab3015d711';
   final String clientSecret = '622b4fbad33947c59b95a6ae607de11d';
-  final String redirectUrl = 'blackhole://spotify/auth';
+  final String redirectUrl = 'Harekrishnamusic://spotify/auth';
   final String spotifyApiUrl = 'https://accounts.spotify.com/api';
   final String spotifyApiBaseUrl = 'https://api.spotify.com/v1';
   final String spotifyUserPlaylistEndpoint = '/me/playlists';

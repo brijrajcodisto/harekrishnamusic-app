@@ -1,43 +1,43 @@
 /*
- *  This file is part of BlackHole (https://github.com/Sangwan5688/BlackHole).
+ *  This file is part of Harekrishnamusic (https://github.com/brijrajcodisto/Harekrishnamusic).
  * 
- * BlackHole is free software: you can redistribute it and/or modify
+ * Harekrishnamusic is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * BlackHole is distributed in the hope that it will be useful,
+ * Harekrishnamusic is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with BlackHole.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Harekrishnamusic.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Copyright (c) 2021-2022, Ankit Sangwan
+ * Copyright (c) 2021-2022, Brijraj Singh
  */
 
 import 'dart:io';
 import 'dart:math';
 
-import 'package:blackhole/CustomWidgets/custom_physics.dart';
-import 'package:blackhole/CustomWidgets/gradient_containers.dart';
-import 'package:blackhole/CustomWidgets/miniplayer.dart';
-import 'package:blackhole/CustomWidgets/snackbar.dart';
-import 'package:blackhole/CustomWidgets/textinput_dialog.dart';
-import 'package:blackhole/Helpers/backup_restore.dart';
-import 'package:blackhole/Helpers/downloads_checker.dart';
-import 'package:blackhole/Helpers/github.dart';
-import 'package:blackhole/Helpers/update.dart';
-import 'package:blackhole/Screens/Home/saavn.dart';
-import 'package:blackhole/Screens/Library/library.dart';
-import 'package:blackhole/Screens/LocalMusic/downed_songs.dart';
-import 'package:blackhole/Screens/LocalMusic/downed_songs_desktop.dart';
-import 'package:blackhole/Screens/Search/search.dart';
-import 'package:blackhole/Screens/Settings/new_settings_page.dart';
-import 'package:blackhole/Screens/Top Charts/top.dart';
-import 'package:blackhole/Screens/YouTube/youtube_home.dart';
-import 'package:blackhole/Services/ext_storage_provider.dart';
+import 'package:Harekrishnamusic/CustomWidgets/custom_physics.dart';
+import 'package:Harekrishnamusic/CustomWidgets/gradient_containers.dart';
+import 'package:Harekrishnamusic/CustomWidgets/miniplayer.dart';
+import 'package:Harekrishnamusic/CustomWidgets/snackbar.dart';
+import 'package:Harekrishnamusic/CustomWidgets/textinput_dialog.dart';
+import 'package:Harekrishnamusic/Helpers/backup_restore.dart';
+import 'package:Harekrishnamusic/Helpers/downloads_checker.dart';
+import 'package:Harekrishnamusic/Helpers/github.dart';
+import 'package:Harekrishnamusic/Helpers/update.dart';
+import 'package:Harekrishnamusic/Screens/Home/saavn.dart';
+import 'package:Harekrishnamusic/Screens/Library/library.dart';
+import 'package:Harekrishnamusic/Screens/LocalMusic/downed_songs.dart';
+import 'package:Harekrishnamusic/Screens/LocalMusic/downed_songs_desktop.dart';
+import 'package:Harekrishnamusic/Screens/Search/search.dart';
+import 'package:Harekrishnamusic/Screens/Settings/new_settings_page.dart';
+import 'package:Harekrishnamusic/Screens/Top Charts/top.dart';
+import 'package:Harekrishnamusic/Screens/YouTube/youtube_home.dart';
+import 'package:Harekrishnamusic/Services/ext_storage_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.pop(context);
                     launchUrl(
-                      Uri.parse('https://sangwan5688.github.io/download/'),
+                      Uri.parse('https://brijrajcodisto.github.io/download/'),
                       mode: LaunchMode.externalApplication,
                     );
                   },
@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
           ) as String;
           if (autoBackPath == '') {
             ExtStorageProvider.getExtStorage(
-              dirName: 'BlackHole/Backups',
+              dirName: 'Harekrishnamusic/Backups',
               writeAccess: true,
             ).then((value) {
               Hive.box('settings').put('autoBackPath', value);
@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                 checked,
                 boxNames,
                 path: value,
-                fileName: 'BlackHole_AutoBackup',
+                fileName: 'Harekrishnamusic_AutoBackup',
                 showDialog: false,
               );
             });
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
               checked,
               boxNames,
               path: autoBackPath,
-              fileName: 'BlackHole_AutoBackup',
+              fileName: 'Harekrishnamusic_AutoBackup',
               showDialog: false,
             );
           }

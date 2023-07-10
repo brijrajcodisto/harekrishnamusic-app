@@ -1,4 +1,4 @@
-name: blackhole
+name: Harekrishnamusic
 description: An Open Source Music Player App.
 
 # Prevent accidental publishing to pub.dev.
@@ -15,7 +15,7 @@ dependencies:
   audio_service: ^0.18.10
   audiotagger:
     git:
-      url: https://github.com/Sangwan5688/Audiotagger
+      url: https://github.com/brijrajcodisto/harekrishnamusic
       ref: 90f2db5
   # bitsdojo_window: ^0.1.1+1 #For Desktops
   cached_network_image: ^3.2.3
@@ -77,9 +77,9 @@ flutter:
     - assets/
 
 msix_config:
-  display_name: BlackHole
-  publisher_display_name: Ankit Sangwan
-  identity_name: com.shadow.blackhole
+  display_name: Harekrishnamusic
+  publisher_display_name: Brijraj Singh
+  identity_name: com.shadow.harekrishnamusic
   icons_background_color: transparent
   logo_path: assets/ic_launcher.png
   file_extension: .mp3, .m4a

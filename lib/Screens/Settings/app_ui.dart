@@ -1,7 +1,7 @@
-import 'package:blackhole/CustomWidgets/box_switch_tile.dart';
-import 'package:blackhole/CustomWidgets/gradient_containers.dart';
-import 'package:blackhole/CustomWidgets/textinput_dialog.dart';
-import 'package:blackhole/Screens/Settings/player_gradient.dart';
+import 'package:Harekrishnamusic/CustomWidgets/box_switch_tile.dart';
+import 'package:Harekrishnamusic/CustomWidgets/gradient_containers.dart';
+import 'package:Harekrishnamusic/CustomWidgets/textinput_dialog.dart';
+import 'package:Harekrishnamusic/Screens/Settings/player_gradient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
