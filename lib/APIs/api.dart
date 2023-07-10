@@ -28,11 +28,11 @@ class SaavnAPI {
   List preferredLanguages = Hive.box('settings')
       .get('preferredLanguage', defaultValue: ['Hindi']) as List;
   Map<String, String> headers = {};
-  String baseUrl = 'www.jiosaavn.com';
-  String apiStr = '/api.php?_format=json&_marker=0&api_version=4&ctx=web6dot0';
+  String baseUrl = 'harekrishnamusic.onrender.com';//'www.jiosaavn.com';
+  String apiStr = '';//'/api.php?_format=json&_marker=0&api_version=4&ctx=web6dot0';
   Box settingsBox = Hive.box('settings');
   Map<String, String> endpoints = {
-    'homeData': '__call=webapi.getLaunchData',
+    'homeData': '/home',//'__call=webapi.getLaunchData',
     'topSearches': '__call=content.getTopSearches',
     'fromToken': '__call=webapi.get',
     'featuredRadio': '__call=webradio.createFeaturedStation',
@@ -66,6 +66,8 @@ class SaavnAPI {
     } else {
       url = Uri.https(baseUrl, '$apiStr&$params');
     }
+    url = Uri.https(baseUrl, params);
+    Logger.root.info('Harekrishna Url is: $url');
     preferredLanguages =
         preferredLanguages.map((lang) => lang.toLowerCase()).toList();
     final String languageHeader = 'L=${preferredLanguages.join('%2C')}';
@@ -110,7 +112,11 @@ class SaavnAPI {
     try {
       final res = await getResponse(endpoints['homeData']!);
       if (res.statusCode == 200) {
-        final Map data = json.decode(res.body) as Map;
+        
+        // final Map data1 = res.body as Map;
+        // final Map data = data1['data'] as Map;
+        final body = json.decode(res.body);
+        final Map data = body as Map;
         result = await FormatResponse.formatHomePageData(data);
       }
     } catch (e) {

@@ -503,6 +503,7 @@ class FormatResponse {
       }
       final List promoList = [];
       final List promoListTemp = [];
+      //Logger.root.info('HareKrishna home page module is: ${data['modules']}');
       data['modules'].forEach((k, v) {
         if (k.startsWith('promo') as bool) {
           if (data[k][0]['type'] == 'song' &&
