@@ -29,27 +29,27 @@ class SaavnAPI {
       .get('preferredLanguage', defaultValue: ['Hindi']) as List;
   Map<String, String> headers = {};
   String baseUrl = 'www.jiosaavn.com';
-  String apiStr = '/api.php/';
+  String apiStr = '/api.php?_format=json&_marker=0&api_version=4&ctx=web6dot0';
   Box settingsBox = Hive.box('settings');
   Map<String, String> endpoints = {
-    'homeData': 'webapi.getLaunchData',
-    // 'topSearches': '__call=content.getTopSearches',
-    // 'fromToken': '__call=webapi.get',
-    // 'featuredRadio': '__call=webradio.createFeaturedStation',
-    // 'artistRadio': '__call=webradio.createArtistStation',
-    // 'entityRadio': '__call=webradio.createEntityStation',
-    // 'radioSongs': '__call=webradio.getSong',
-    // 'songDetails': '__call=song.getDetails',
-    // 'playlistDetails': '__call=playlist.getDetails',
-    // 'albumDetails': '__call=content.getAlbumDetails',
-    // 'getResults': '__call=search.getResults',
-    // 'albumResults': '__call=search.getAlbumResults',
-    // 'artistResults': '__call=search.getArtistResults',
-    // 'playlistResults': '__call=search.getPlaylistResults',
-    // 'getReco': '__call=reco.getreco',
-    // 'getAlbumReco': '__call=reco.getAlbumReco', // still not used
-    // 'artistOtherTopSongs':
-    //     '__call=search.artistOtherTopSongs', // still not used
+    'homeData': '__call=webapi.getLaunchData',
+    'topSearches': '__call=content.getTopSearches',
+    'fromToken': '__call=webapi.get',
+    'featuredRadio': '__call=webradio.createFeaturedStation',
+    'artistRadio': '__call=webradio.createArtistStation',
+    'entityRadio': '__call=webradio.createEntityStation',
+    'radioSongs': '__call=webradio.getSong',
+    'songDetails': '__call=song.getDetails',
+    'playlistDetails': '__call=playlist.getDetails',
+    'albumDetails': '__call=content.getAlbumDetails',
+    'getResults': '__call=search.getResults',
+    'albumResults': '__call=search.getAlbumResults',
+    'artistResults': '__call=search.getArtistResults',
+    'playlistResults': '__call=search.getPlaylistResults',
+    'getReco': '__call=reco.getreco',
+    'getAlbumReco': '__call=reco.getAlbumReco', // still not used
+    'artistOtherTopSongs':
+        '__call=search.artistOtherTopSongs', // still not used
   };
 
   Future<Response> getResponse(
@@ -73,8 +73,8 @@ class SaavnAPI {
       'api_version': '4',
       'ctx': 'web6dot0'
     };
-    url = Uri.https(baseUrl, apiStr, queryParameters);
-    Logger.root.info('hare krishna url is $url');
+    // url = Uri.https(baseUrl, apiStr, queryParameters);
+    // Logger.root.info('hare krishna url is $url');
     preferredLanguages =
         preferredLanguages.map((lang) => lang.toLowerCase()).toList();
     final String languageHeader = 'L=${preferredLanguages.join('%2C')}';
