@@ -28,8 +28,8 @@ class SaavnAPI {
   List preferredLanguages = Hive.box('settings')
       .get('preferredLanguage', defaultValue: ['Hindi']) as List;
   Map<String, String> headers = {};
-  String baseUrl = 'www.jiosaavn.com';
-  String apiStr = '/api.php/';
+  String baseUrl = 'harekrishnamusic.onrender.com';
+  String apiStr = '';
   Box settingsBox = Hive.box('settings');
   Map<String, String> endpoints = {
     'homeData': 'webapi.getLaunchData',
