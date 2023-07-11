@@ -489,6 +489,7 @@ class FormatResponse {
   }
 
   static Future<Map> formatHomePageData(Map data) async {
+    Logger.root.info('Hare krishna 1');
     try {
       if (data['new_trending'] != null) {
         data['new_trending'] =
@@ -501,19 +502,22 @@ class FormatResponse {
       if (data['city_mod'] != null) {
         data['city_mod'] = await formatSongsInList(data['city_mod'] as List);
       }
+      Logger.root.info('Hare krishna 34e');
       final List promoList = [];
       final List promoListTemp = [];
       //Logger.root.info('HareKrishna home page module is: ${data['modules']}');
-      data['modules'].forEach((k, v) {
-        if (k.startsWith('promo') as bool) {
-          if (data[k][0]['type'] == 'song' &&
-              (data[k][0]['mini_obj'] as bool? ?? false)) {
-            promoListTemp.add(k.toString());
-          } else {
-            promoList.add(k.toString());
-          }
-        }
-      });
+      // data['modules'].forEach((k, v) {
+      //    Logger.root.info('Hare krishna $k');
+      //   if (k.startsWith('promo') as bool) {
+      //     if (data[k][0]['type'] == 'song' &&
+      //         (data[k][0]['mini_obj'] as bool? ?? false)) {
+      //       promoListTemp.add(k.toString());
+      //     } else {
+      //       promoList.add(k.toString());
+      //     }
+      //   }
+      // });
+      //Logger.root.info('Error inside modules: ');
       for (int i = 0; i < promoList.length; i++) {
         data[promoList[i]] =
             await formatSongsInList(data[promoList[i]] as List);
@@ -538,6 +542,7 @@ class FormatResponse {
 
   static Future<Map> formatPromoLists(Map data) async {
     try {
+      Logger.root.info('harekrishna inside formatPromoLists:');
       final List promoList = data['collections_temp'] as List;
       for (int i = 0; i < promoList.length; i++) {
         data[promoList[i]] =

@@ -38,6 +38,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
+import 'package:logging/logging.dart';
 
 bool fetched = false;
 List preferredLanguage = Hive.box('settings')
@@ -70,6 +71,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
 
   Future<void> getHomePageData() async {
     Map recievedData = await SaavnAPI().fetchHomePageData();
+    Logger.root.info('harekrishna fethc home page data is ');
     if (recievedData.isNotEmpty) {
       Hive.box('cache').put('homepage', recievedData);
       data = recievedData;
@@ -78,6 +80,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
     }
     setState(() {});
     recievedData = await FormatResponse.formatPromoLists(data);
+    Logger.root.info('hare krishna 647 $recievedData');
     if (recievedData.isNotEmpty) {
       Hive.box('cache').put('homepage', recievedData);
       data = recievedData;
