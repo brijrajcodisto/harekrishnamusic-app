@@ -464,98 +464,98 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              GestureDetector(
-                                child: Icon(
-                                  Icons.block_rounded,
-                                  color: Theme.of(context).disabledColor,
-                                  size: 18,
-                                ),
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        title: Text(
-                                          AppLocalizations.of(
-                                            context,
-                                          )!
-                                              .blacklistHomeSections,
-                                        ),
-                                        content: Text(
-                                          AppLocalizations.of(
-                                            context,
-                                          )!
-                                              .blacklistHomeSectionsConfirm,
-                                        ),
-                                        actions: [
-                                          TextButton(
-                                            style: TextButton.styleFrom(
-                                              foregroundColor: Theme.of(context)
-                                                  .iconTheme
-                                                  .color,
-                                            ),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text(
-                                              AppLocalizations.of(
-                                                context,
-                                              )!
-                                                  .no,
-                                            ),
-                                          ),
-                                          TextButton(
-                                            style: TextButton.styleFrom(
-                                              foregroundColor: Colors.white,
-                                              backgroundColor: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary,
-                                            ),
-                                            onPressed: () async {
-                                              Navigator.pop(context);
-                                              blacklistedHomeSections.add(
-                                                data['modules'][lists[idx]]
-                                                        ?['title']
-                                                    ?.toString()
-                                                    .toLowerCase(),
-                                              );
-                                              Hive.box('settings').put(
-                                                'blacklistedHomeSections',
-                                                blacklistedHomeSections,
-                                              );
-                                              setState(() {});
-                                            },
-                                            child: Text(
-                                              AppLocalizations.of(
-                                                context,
-                                              )!
-                                                  .yes,
-                                              style: TextStyle(
-                                                color: Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary ==
-                                                        Colors.white
-                                                    ? Colors.black
-                                                    : null,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                              // const SizedBox(
+                              //   width: 8,
+                              // ),
+                              // GestureDetector(
+                              //   child: Icon(
+                              //     Icons.block_rounded,
+                              //     color: Theme.of(context).disabledColor,
+                              //     size: 18,
+                              //   ),
+                              //   onTap: () {
+                              //     showDialog(
+                              //       context: context,
+                              //       builder: (BuildContext context) {
+                              //         return AlertDialog(
+                              //           shape: RoundedRectangleBorder(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(15.0),
+                              //           ),
+                              //           title: Text(
+                              //             AppLocalizations.of(
+                              //               context,
+                              //             )!
+                              //                 .blacklistHomeSections,
+                              //           ),
+                              //           content: Text(
+                              //             AppLocalizations.of(
+                              //               context,
+                              //             )!
+                              //                 .blacklistHomeSectionsConfirm,
+                              //           ),
+                              //           actions: [
+                              //             TextButton(
+                              //               style: TextButton.styleFrom(
+                              //                 foregroundColor: Theme.of(context)
+                              //                     .iconTheme
+                              //                     .color,
+                              //               ),
+                              //               onPressed: () {
+                              //                 Navigator.pop(context);
+                              //               },
+                              //               child: Text(
+                              //                 AppLocalizations.of(
+                              //                   context,
+                              //                 )!
+                              //                     .no,
+                              //               ),
+                              //             ),
+                              //             TextButton(
+                              //               style: TextButton.styleFrom(
+                              //                 foregroundColor: Colors.white,
+                              //                 backgroundColor: Theme.of(context)
+                              //                     .colorScheme
+                              //                     .secondary,
+                              //               ),
+                              //               onPressed: () async {
+                              //                 Navigator.pop(context);
+                              //                 blacklistedHomeSections.add(
+                              //                   data['modules'][lists[idx]]
+                              //                           ?['title']
+                              //                       ?.toString()
+                              //                       .toLowerCase(),
+                              //                 );
+                              //                 Hive.box('settings').put(
+                              //                   'blacklistedHomeSections',
+                              //                   blacklistedHomeSections,
+                              //                 );
+                              //                 setState(() {});
+                              //               },
+                              //               child: Text(
+                              //                 AppLocalizations.of(
+                              //                   context,
+                              //                 )!
+                              //                     .yes,
+                              //                 style: TextStyle(
+                              //                   color: Theme.of(context)
+                              //                               .colorScheme
+                              //                               .secondary ==
+                              //                           Colors.white
+                              //                       ? Colors.black
+                              //                       : null,
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //             const SizedBox(
+                              //               width: 5,
+                              //             ),
+                              //           ],
+                              //         );
+                              //       },
+                              //     );
+                              //   },
+                              // ),
                             ],
                           ),
                         ),

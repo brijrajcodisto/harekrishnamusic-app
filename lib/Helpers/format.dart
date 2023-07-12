@@ -491,9 +491,17 @@ class FormatResponse {
   static Future<Map> formatHomePageData(Map data) async {
     Logger.root.info('Hare krishna 1');
     try {
-      if (data['new_trending'] != null) {
-        data['new_trending'] =
-            await formatSongsInList(data['new_trending'] as List);
+      if (data['srila_prabhupada_lectures'] != null) {
+        data['srila_prabhupada_lectures'] =
+            await formatSongsInList(data['srila_prabhupada_lectures'] as List);
+      }
+      if (data['srila_prabhupada_bhajans'] != null) {
+        data['srila_prabhupada_bhajans'] =
+            await formatSongsInList(data['srila_prabhupada_bhajans'] as List);
+      }
+      if (data['srila_prabhupada_japa'] != null) {
+        data['srila_prabhupada_japa'] =
+            await formatSongsInList(data['srila_prabhupada_japa'] as List);
       }
       if (data['new_albums'] != null) {
         data['new_albums'] =
@@ -523,15 +531,12 @@ class FormatResponse {
             await formatSongsInList(data[promoList[i]] as List);
       }
       data['collections'] = [
-        'new_trending',
-        'charts',
-        'new_albums',
-        'tag_mixes',
-        'top_playlists',
-        'radio',
-        'city_mod',
-        'artist_recos',
-        ...promoList
+        'srila_prabhupada_lectures',
+        'srila_prabhupada_bhajans',
+        'srila_prabhupada_japa',
+        'iskcon_swamis',
+        'iskcon_prabhujis',
+        'iskcon_matajis'
       ];
       data['collections_temp'] = promoListTemp;
     } catch (e) {
