@@ -143,7 +143,7 @@ class FormatResponse {
             : response['more_info']['music'],
         'image': getImageUrl(response['image'].toString()),
         'perma_url': response['perma_url'],
-        'url': decode(response['more_info']['encrypted_media_url'].toString()),
+        'url': response['more_info']['media_url']//decode(response['more_info']['encrypted_media_url'].toString()),
       };
       // Hive.box('cache').put(response['id'].toString(), info);
     } catch (e) {
