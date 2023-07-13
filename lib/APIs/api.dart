@@ -479,6 +479,7 @@ class SaavnAPI {
   Future<Map> fetchAlbumSongs(String albumId) async {
     //final String params = '${endpoints['albumDetails']}';
     final Map<String, dynamic> params = {
+        'albumid': albumId
     };
     try {
       final res = await getResponse(endpoints['albumDetails']!, params);
