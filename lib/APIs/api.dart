@@ -28,7 +28,7 @@ class SaavnAPI {
   List preferredLanguages = Hive.box('settings')
       .get('preferredLanguage', defaultValue: ['Hindi']) as List;
   Map<String, String> headers = {};
-  String baseUrl = 'harekrishnamusic.onrender.com';
+  String baseUrl = 'api.music.girigovardhan.com';
   String apiStr = '';
   Box settingsBox = Hive.box('settings');
   Map<String, String> endpoints = {
