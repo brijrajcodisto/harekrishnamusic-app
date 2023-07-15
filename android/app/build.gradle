@@ -42,7 +42,7 @@ android {
     defaultConfig {
         applicationId "com.shadow.Harekrishnamusic"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
