@@ -34,7 +34,7 @@ class SaavnAPI {
   Map<String, String> endpoints = {
     'homeData': 'home',
     'topSearches': 'content.getTopSearches',
-    'fromToken': 'webapi.get',
+    'fromToken': 'fromtoken',
     'featuredRadio': 'webradio.createFeaturedStation',
     'artistRadio': 'webradio.createArtistStation',
     'entityRadio': 'webradio.createEntityStation',
@@ -42,10 +42,10 @@ class SaavnAPI {
     'songDetails': 'song',
     'playlistDetails': 'playlist.getDetails',
     'albumDetails': 'album',
-    'getResults': 'search.getResults',
-    'albumResults': 'search.getAlbumResults',
-    'artistResults': 'search.getArtistResults',
-    'playlistResults': 'search.getPlaylistResults',
+    'getResults': 'search',
+    'albumResults': 'search/album',
+    'artistResults': 'search/artist',
+    'playlistResults': 'search/playlist',
     'getReco': 'reco.getreco',
     'getAlbumReco': 'reco.getAlbumReco', // still not used
     'artistOtherTopSongs':
@@ -509,7 +509,7 @@ class SaavnAPI {
   }
 
   Future<Map<String, List>> fetchArtistSongs({
-    required String artistToken,
+    required String artistId,
     String category = '',
     String sortOrder = '',
   }) async {
@@ -522,7 +522,8 @@ class SaavnAPI {
        'n_album': 50,
        'sub_type': '',
        'category': category,
-       'sort_order': sortOrder
+       'sort_order': sortOrder,
+       'token': artistId
     };
     final res = await getResponse(endpoints['fromToken']!, params);
     if (res.statusCode == 200) {

@@ -461,6 +461,7 @@ class FormatResponse {
         'title': response['name'].toString().unescape(),
         'subtitle': response['dominantType'].toString().capitalize(),
         'image': getImageUrl(response['image_url'].toString()),
+        'artistId': response['id'],
         'artistToken': response['perma_url'].toString().split('/').last,
         'perma_url': response['perma_url'].toString(),
       };
