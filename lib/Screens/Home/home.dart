@@ -64,14 +64,14 @@ class _HomePageState extends State<HomePage> {
       Hive.box('settings').get('autoBackup', defaultValue: false) as bool;
   List sectionsToShow = Hive.box('settings').get(
     'sectionsToShow',
-    defaultValue: ['Home', 'Top Charts', 'YouTube', 'Library'],
+    defaultValue: ['Home', 'Library'],
   ) as List;
   DateTime? backButtonPressTime;
 
   void callback() {
     sectionsToShow = Hive.box('settings').get(
       'sectionsToShow',
-      defaultValue: ['Home', 'Top Charts', 'YouTube', 'Library'],
+      defaultValue: ['Home', 'Library'],
     ) as List;
     setState(() {});
   }
@@ -853,11 +853,11 @@ class _HomePageState extends State<HomePage> {
                                   ),
                               ],
                             ),
-                            if (sectionsToShow.contains('Top Charts'))
-                              TopCharts(
-                                pageController: _pageController,
-                              ),
-                            const YouTube(),
+                            // if (sectionsToShow.contains('Top Charts'))
+                            //   TopCharts(
+                            //     pageController: _pageController,
+                            //   ),
+                            // const YouTube(),
                             const LibraryPage(),
                             if (sectionsToShow.contains('Settings'))
                               NewSettingsPage(callback: callback),

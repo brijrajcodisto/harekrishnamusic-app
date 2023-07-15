@@ -33,11 +33,11 @@ class _AppUIPageState extends State<AppUIPage> {
   ) as List<int>;
   final List<String> sectionsToShow = Hive.box('settings').get(
     'sectionsToShow',
-    defaultValue: ['Home', 'Top Charts', 'YouTube', 'Library'],
+    defaultValue: ['Home', 'Library'],
   ) as List<String>;
   final List<String> sectionsAvailableToShow = Hive.box('settings').get(
     'sectionsAvailableToShow',
-    defaultValue: ['Home', 'Top Charts', 'YouTube', 'Library', 'Settings'],
+    defaultValue: ['Home', 'Settings'],
   ) as List<String>;
 
   @override

@@ -137,7 +137,7 @@ class _SettingPageState extends State<SettingPage>
   final ValueNotifier<List> sectionsToShow = ValueNotifier<List>(
     Hive.box('settings').get(
       'sectionsToShow',
-      defaultValue: ['Home', 'Top Charts', 'YouTube', 'Library'],
+      defaultValue: ['Home', 'Library'],
     ) as List,
   );
 
@@ -1917,16 +1917,13 @@ class _SettingPageState extends State<SettingPage>
                                 if (val) {
                                   sectionsToShow.value = [
                                     'Home',
-                                    'Top Charts',
-                                    'YouTube',
                                     'Library'
                                   ];
                                 } else {
                                   sectionsToShow.value = [
                                     'Home',
-                                    'YouTube',
                                     'Library',
-                                    'Settings'
+                              
                                   ];
                                 }
                                 settingsBox.put(
