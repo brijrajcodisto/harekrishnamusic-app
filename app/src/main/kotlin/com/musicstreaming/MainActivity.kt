@@ -18,13 +18,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MusicStreamingApp()
+            MusicStreamingAppUI()
         }
     }
 }
 
 @Composable
-fun MusicStreamingApp() {
+fun MusicStreamingAppUI() {
     MaterialTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             val authViewModel = koinViewModel<AuthViewModel>()

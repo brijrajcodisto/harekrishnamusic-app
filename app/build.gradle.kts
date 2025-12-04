@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
 }
 
@@ -37,11 +37,11 @@ android {
 
     buildFeatures {
         compose = true
-        viewBinding = true
+        dataBinding = false // Explicitly disabled for Gradle 9 compatibility
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.0"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
 }
 
@@ -52,11 +52,12 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
 
     // Jetpack Compose
-    implementation("androidx.compose.ui:ui:1.5.4")
-    implementation("androidx.compose.material3:material3:1.1.1")
-    implementation("androidx.compose.runtime:runtime:1.5.4")
+    implementation("androidx.compose.ui:ui:1.5.7")
+    implementation("androidx.compose.material3:material3:1.2.1")
+    implementation("androidx.compose.runtime:runtime:1.5.7")
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.compose.material:material-icons-extended:1.5.7")
 
     // Lifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -74,7 +75,7 @@ dependencies {
     // Room Database
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+        ksp("androidx.room:room-compiler:2.6.1")
 
     // Dependency Injection
     implementation("io.insert-koin:koin-android:3.5.0")
