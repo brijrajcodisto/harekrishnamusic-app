@@ -1,0 +1,601 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Music Streaming API",
+        "description": "API for music streaming, authentication, search, live, and YouTube integration",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.example.com",
+            "description": "Production server"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "schemas": {
+            "Track": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "artist": {
+                        "type": "string"
+                    },
+                    "album": {
+                        "type": "string"
+                    },
+                    "duration": {
+                        "type": "integer"
+                    },
+                    "coverUrl": {
+                        "type": "string"
+                    },
+                    "streamUrl": {
+                        "type": "string"
+                    },
+                    "lyrics": {
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Artist": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "bio": {
+                        "type": "string"
+                    },
+                    "imageUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Album": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "artist": {
+                        "type": "string"
+                    },
+                    "coverUrl": {
+                        "type": "string"
+                    },
+                    "tracks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Track"
+                        }
+                    }
+                }
+            },
+            "YouTubeVideo": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "videoUrl": {
+                        "type": "string"
+                    },
+                    "thumbnailUrl": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "BearerAuth": []
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "summary": "Login with email and password",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/signup": {
+            "post": {
+                "summary": "Signup with email, password, and name",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful signup",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/guest": {
+            "post": {
+                "summary": "Guest login",
+                "responses": {
+                    "200": {
+                        "description": "Guest token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tracks": {
+            "get": {
+                "summary": "List tracks",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of tracks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Track"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tracks/{id}": {
+            "get": {
+                "summary": "Get track details",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Track details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Track"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tracks/{id}/stream": {
+            "get": {
+                "summary": "Get track stream URL",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stream URL",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "streamUrl": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/live": {
+            "get": {
+                "summary": "List live streams",
+                "responses": {
+                    "200": {
+                        "description": "List of live streams",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Track"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/favorites": {
+            "get": {
+                "summary": "Get user favorites",
+                "responses": {
+                    "200": {
+                        "description": "List of favorite tracks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Track"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/favorites/{id}": {
+            "post": {
+                "summary": "Add track to favorites",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove track from favorites",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/youtube/search": {
+            "get": {
+                "summary": "Search YouTube videos",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of YouTube videos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/YouTubeVideo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/youtube/live": {
+            "get": {
+                "summary": "List YouTube live streams",
+                "responses": {
+                    "200": {
+                        "description": "List of YouTube live videos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/YouTubeVideo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search": {
+            "get": {
+                "summary": "Search tracks, artists, or albums",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "track",
+                                "artist",
+                                "album"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Search results",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "#/components/schemas/Track"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Artist"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Album"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/artists/{id}": {
+            "get": {
+                "summary": "Get artist details",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Artist details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Artist"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/albums/{id}": {
+            "get": {
+                "summary": "Get album details",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Album details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Album"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
