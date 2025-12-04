@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Privacy">
+        <CheckBoxPreference
+            android:key="collect_analytics"
+            android:title="Collect Analytics"
+            android:summary="Help improve the app by sending analytics" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Playback">
+        <ListPreference
+            android:key="quality"
+            android:title="Audio Quality"
+            android:summary="Select audio quality"
+            android:entries="@array/quality_entries"
+            android:entryValues="@array/quality_values" />
+    </PreferenceCategory>
+</PreferenceScreen>
