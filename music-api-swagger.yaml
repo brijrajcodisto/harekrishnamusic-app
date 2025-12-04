@@ -67,7 +67,7 @@ components:
         tracks:
           type: array
           items:
-            $ref: '#/components/schemas/Track'
+            $ref: "#/components/schemas/Track"
     YouTubeVideo:
       type: object
       properties:
@@ -99,7 +99,7 @@ paths:
                 password:
                   type: string
       responses:
-        '200':
+        "200":
           description: Successful login
           content:
             application/json:
@@ -109,7 +109,7 @@ paths:
                   token:
                     type: string
                   user:
-                    $ref: '#/components/schemas/User'
+                    $ref: "#/components/schemas/User"
   /auth/signup:
     post:
       summary: Signup with email, password, and name
@@ -127,7 +127,7 @@ paths:
                 name:
                   type: string
       responses:
-        '200':
+        "200":
           description: Successful signup
           content:
             application/json:
@@ -137,12 +137,12 @@ paths:
                   token:
                     type: string
                   user:
-                    $ref: '#/components/schemas/User'
+                    $ref: "#/components/schemas/User"
   /auth/guest:
     post:
       summary: Guest login
       responses:
-        '200':
+        "200":
           description: Guest token
           content:
             application/json:
@@ -168,14 +168,14 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        "200":
           description: List of tracks
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Track'
+                  $ref: "#/components/schemas/Track"
   /tracks/{id}:
     get:
       summary: Get track details
@@ -186,12 +186,12 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Track details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Track'
+                $ref: "#/components/schemas/Track"
   /tracks/{id}/stream:
     get:
       summary: Get track stream URL
@@ -202,7 +202,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Stream URL
           content:
             application/json:
@@ -215,26 +215,26 @@ paths:
     get:
       summary: List live streams
       responses:
-        '200':
+        "200":
           description: List of live streams
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Track'
+                  $ref: "#/components/schemas/Track"
   /user/favorites:
     get:
       summary: Get user favorites
       responses:
-        '200':
+        "200":
           description: List of favorite tracks
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Track'
+                  $ref: "#/components/schemas/Track"
   /user/favorites/{id}:
     post:
       summary: Add track to favorites
@@ -245,7 +245,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
@@ -263,7 +263,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
@@ -281,26 +281,26 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of YouTube videos
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/YouTubeVideo'
+                  $ref: "#/components/schemas/YouTubeVideo"
   /youtube/live:
     get:
       summary: List YouTube live streams
       responses:
-        '200':
+        "200":
           description: List of YouTube live videos
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/YouTubeVideo'
+                  $ref: "#/components/schemas/YouTubeVideo"
   /search:
     get:
       summary: Search tracks, artists, or albums
@@ -315,7 +315,7 @@ paths:
             type: string
             enum: [track, artist, album]
       responses:
-        '200':
+        "200":
           description: Search results
           content:
             application/json:
@@ -323,9 +323,9 @@ paths:
                 type: array
                 items:
                   oneOf:
-                    - $ref: '#/components/schemas/Track'
-                    - $ref: '#/components/schemas/Artist'
-                    - $ref: '#/components/schemas/Album'
+                    - $ref: "#/components/schemas/Track"
+                    - $ref: "#/components/schemas/Artist"
+                    - $ref: "#/components/schemas/Album"
   /artists/{id}:
     get:
       summary: Get artist details
@@ -336,12 +336,12 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Artist details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Artist'
+                $ref: "#/components/schemas/Artist"
   /albums/{id}:
     get:
       summary: Get album details
@@ -352,9 +352,9 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Album details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Album'
+                $ref: "#/components/schemas/Album"
