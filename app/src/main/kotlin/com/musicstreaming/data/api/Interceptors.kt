@@ -1,5 +1,6 @@
 package com.musicstreaming.data.api
 
+import com.musicstreaming.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import com.musicstreaming.data.auth.AuthManager
@@ -21,9 +22,14 @@ class AuthInterceptor(private val authManager: AuthManager) : Interceptor {
         val newRequest = if (token != null) {
             originalRequest.newBuilder()
                 .header("Authorization", "Bearer $token")
+                .header("X-API-Key", BuildConfig.MUSIC_API_KEY)
+                .header("X-API-Secret", BuildConfig.MUSIC_API_SECRET)
                 .build()
         } else {
-            originalRequest
+            originalRequest.newBuilder()
+                .header("X-API-Key", BuildConfig.MUSIC_API_KEY)
+                .header("X-API-Secret", BuildConfig.MUSIC_API_SECRET)
+                .build()
         }
 
         return chain.proceed(newRequest)

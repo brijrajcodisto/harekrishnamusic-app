@@ -5,9 +5,18 @@ plugins {
     id("kotlin-parcelize")
 }
 
+import java.util.Properties
+
 android {
     namespace = "com.musicstreaming"
     compileSdk = 34
+
+    val localProperties = Properties().apply {
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            load(localPropertiesFile.inputStream())
+        }
+    }
 
     defaultConfig {
         applicationId = "com.musicstreaming"
@@ -15,6 +24,10 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
+
+        buildConfigField("String", "MUSIC_API_KEY", "\"${localProperties.getProperty("MUSIC_API_KEY")}\"")
+        buildConfigField("String", "MUSIC_API_URL", "\"${localProperties.getProperty("MUSIC_API_URL")}\"")
+        buildConfigField("String", "MUSIC_API_SECRET", "\"${localProperties.getProperty("MUSIC_API_SECRET")}\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,6 +51,7 @@ android {
     buildFeatures {
         compose = true
         dataBinding = false // Explicitly disabled for Gradle 9 compatibility
+        buildConfig = true
     }
 
     composeOptions {

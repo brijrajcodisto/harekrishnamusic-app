@@ -2,6 +2,9 @@ package com.musicstreaming
 
 import android.app.Application
 import android.content.Context
+import com.musicstreaming.BuildConfig
+import com.musicstreaming.data.api.AuthInterceptor
+import com.musicstreaming.data.api.LoggingInterceptor
 import com.musicstreaming.data.api.MusicApi
 import com.musicstreaming.data.auth.AuthManager
 import com.musicstreaming.data.local.AppDatabase
@@ -14,6 +17,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -50,9 +54,15 @@ class MusicStreamingApp : Application() {
 
             // Networking
             single {
+                val okHttpClient = OkHttpClient.Builder()
+                    .addInterceptor(AuthInterceptor(get()))
+                    .addInterceptor(LoggingInterceptor())
+                    .build()
+
                 Retrofit.Builder()
-                    .baseUrl("https://api.example.com/")
+                    .baseUrl(BuildConfig.MUSIC_API_URL)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(okHttpClient)
                     .build()
             }
 
