@@ -1,22 +1,11 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    id("com.google.devtools.ksp")
-    id("kotlin-parcelize")
+    id("com.android.application") version "8.2.0"
+    kotlin("android") version "1.9.21"
 }
-
-import java.util.Properties
 
 android {
     namespace = "com.musicstreaming"
     compileSdk = 34
-
-    val localProperties = Properties().apply {
-        val localPropertiesFile = rootProject.file("local.properties")
-        if (localPropertiesFile.exists()) {
-            load(localPropertiesFile.inputStream())
-        }
-    }
 
     defaultConfig {
         applicationId = "com.musicstreaming"
@@ -24,10 +13,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
-
-        buildConfigField("String", "MUSIC_API_KEY", "\"${localProperties.getProperty("MUSIC_API_KEY")}\"")
-        buildConfigField("String", "MUSIC_API_URL", "\"${localProperties.getProperty("MUSIC_API_URL")}\"")
-        buildConfigField("String", "MUSIC_API_SECRET", "\"${localProperties.getProperty("MUSIC_API_SECRET")}\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -50,8 +35,7 @@ android {
 
     buildFeatures {
         compose = true
-        dataBinding = false // Explicitly disabled for Gradle 9 compatibility
-        buildConfig = true
+        dataBinding = false
     }
 
     composeOptions {
@@ -86,34 +70,16 @@ dependencies {
     // Serialization
     implementation("com.google.code.gson:gson:2.10.1")
 
-    // Room Database
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-        ksp("androidx.room:room-compiler:2.6.1")
-
     // Dependency Injection
     implementation("io.insert-koin:koin-android:3.5.0")
     implementation("io.insert-koin:koin-androidx-compose:3.5.0")
 
     // Media Player
-    implementation("androidx.media3:media3-exoplayer:1.1.1")
-    implementation("androidx.media3:media3-ui:1.1.1")
-    implementation("androidx.media3:media3-session:1.1.1")
+    implementation("androidx.media3:media3-exoplayer:1.2.1")
+    implementation("androidx.media3:media3-ui:1.2.1")
+    implementation("androidx.media3:media3-session:1.2.1")
+    implementation("androidx.media3:media3-common:1.2.1")
 
     // Image Loading
     implementation("io.coil-kt:coil-compose:2.5.0")
-
-    // JSON Parsing
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
-
-    // Security
-    implementation("androidx.security:security-crypto:1.1.0-alpha06")
-
-    // DataStore for preferences
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-
-    // Testing
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

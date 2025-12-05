@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.musicstreaming.app-merged_res-66:/drawable_ic_launcher.xml.flat",
+        "source": "com.musicstreaming.app-main-68:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "com.musicstreaming.app-merged_res-66:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.musicstreaming.app-main-68:/mipmap-mdpi/ic_launcher.png"
+    }
+]

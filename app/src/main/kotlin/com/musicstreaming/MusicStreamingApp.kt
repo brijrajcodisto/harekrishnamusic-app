@@ -1,23 +1,14 @@
 package com.musicstreaming
 
 import android.app.Application
-import android.content.Context
-import com.musicstreaming.BuildConfig
-import com.musicstreaming.data.api.AuthInterceptor
-import com.musicstreaming.data.api.LoggingInterceptor
 import com.musicstreaming.data.api.MusicApi
-import com.musicstreaming.data.auth.AuthManager
-import com.musicstreaming.data.local.AppDatabase
 import com.musicstreaming.data.repository.MusicRepository
-import com.musicstreaming.ui.viewmodel.AuthViewModel
 import com.musicstreaming.ui.viewmodel.MusicViewModel
-import com.musicstreaming.ui.viewmodel.YouTubeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -32,61 +23,28 @@ class MusicStreamingApp : Application() {
         }
     }
 
-    companion object {
-        private val appModule = module {
-            // Database
-            single {
-                AppDatabase.getInstance(get<Context>())
-            }
+    private val appModule = module {
+        single {
+            androidContext()
+        }
 
-            single {
-                get<AppDatabase>().trackDao()
-            }
+        single {
+            Retrofit.Builder()
+                .baseUrl("https://api.deezer.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
 
-            single {
-                get<AppDatabase>().userDao()
-            }
+        single {
+            get<Retrofit>().create(MusicApi::class.java)
+        }
 
-            // Auth Manager
-            single {
-                AuthManager(get<Context>())
-            }
+        single {
+            MusicRepository(get())
+        }
 
-            // Networking
-            single {
-                val okHttpClient = OkHttpClient.Builder()
-                    .addInterceptor(AuthInterceptor(get()))
-                    .addInterceptor(LoggingInterceptor())
-                    .build()
-
-                Retrofit.Builder()
-                    .baseUrl(BuildConfig.MUSIC_API_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(okHttpClient)
-                    .build()
-            }
-
-            single {
-                get<Retrofit>().create(MusicApi::class.java)
-            }
-
-            // Repository
-            single {
-                MusicRepository(get<MusicApi>())
-            }
-
-            // ViewModels
-            viewModel {
-                MusicViewModel(get<MusicRepository>())
-            }
-
-            viewModel {
-                AuthViewModel(get<AuthManager>(), get())
-            }
-
-            viewModel {
-                YouTubeViewModel()
-            }
+        viewModel {
+            MusicViewModel(get(), get())
         }
     }
 }
