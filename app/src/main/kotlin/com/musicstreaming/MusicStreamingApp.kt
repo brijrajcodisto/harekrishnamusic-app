@@ -24,8 +24,8 @@ class MusicStreamingApp : Application() {
     }
 
     private val appModule = module {
-        single {
-            androidContext()
+        single<Application> {
+            androidContext() as Application
         }
 
         single {
