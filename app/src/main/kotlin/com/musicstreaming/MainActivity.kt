@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.musicstreaming.data.model.Track
 import com.musicstreaming.ui.viewmodel.MusicViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.material3.Slider
 import coil.compose.AsyncImage
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MusicApp(viewModel: MusicViewModel = viewModel()) {
+fun MusicApp(viewModel: MusicViewModel = koinViewModel()) {
     var currentScreen by remember { mutableStateOf(Screen.HOME) }
 
     Scaffold(
