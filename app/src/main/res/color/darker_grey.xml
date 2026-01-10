@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color when the view is pressed -->
+    <item android:state_pressed="true"
+        android:color="#444444" /> <!-- A deeper dark grey -->
+
+    <!-- Color when the view is disabled -->
+    <item android:state_enabled="false"
+        android:color="#CCCCCC" /> <!-- A light grey -->
+
+    <!-- Default color for all other states -->
+    <item android:color="#808080" /> <!-- Standard grey -->
+</selector>

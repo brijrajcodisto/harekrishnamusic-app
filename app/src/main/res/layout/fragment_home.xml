@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Greeting Section -->
+        <TextView
+            android:id="@+id/greetingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/good_morning_user"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/onSurface" />
+
+        <!-- Recently Played Section -->
+        <TextView
+            android:id="@+id/recentlyPlayedLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recently_played"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/onSurface" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recentlyPlayedRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal" />
+
+        <!-- Made For You Section -->
+        <TextView
+            android:id="@+id/madeForYouLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/made_for_you"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/onSurface" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/madeForYouRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginBottom="24dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2" />
+
+        <!-- Popular Playlists Section -->
+        <TextView
+            android:id="@+id/popularPlaylistsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/popular_playlists"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/onSurface" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popularPlaylistsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="220dp" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

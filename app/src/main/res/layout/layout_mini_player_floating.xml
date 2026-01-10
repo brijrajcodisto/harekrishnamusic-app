@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/floatingMiniPlayer"
+    android:layout_width="280dp"
+    android:layout_height="80dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="12dp"
+    app:cardBackgroundColor="@color/surface"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp">
+
+        <!-- Drag Handle -->
+        <View
+            android:id="@+id/dragHandle"
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_drag_handle"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
+
+        <!-- Album Art with Progress Ring -->
+        <FrameLayout
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp">
+
+            <!-- Progress Ring Background -->
+            <ImageView
+                android:id="@+id/progressRingBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_progress_ring"
+                android:tint="@color/outlineVariant"
+                android:visibility="gone" />
+
+            <!-- Progress Ring Foreground -->
+            <ImageView
+                android:id="@+id/progressRingForeground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_progress_ring"
+                android:tint="@color/primary"
+                android:visibility="gone" />
+
+            <!-- Album Art -->
+            <ImageView
+                android:id="@+id/miniAlbumArt"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:contentDescription="@string/now_playing_album_art"
+                android:background="@drawable/bg_album_placeholder"
+                tools:src="@drawable/bg_album_placeholder" />
+
+        </FrameLayout>
+
+        <!-- Song Info -->
+        <LinearLayout
+            android:id="@+id/miniSongInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/miniAlbumArt"
+            app:layout_constraintTop_toTopOf="@id/miniAlbumArt"
+            app:layout_constraintBottom_toBottomOf="@id/miniAlbumArt"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/miniSongTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Song Title"
+                android:textSize="14sp"
+                android:textColor="@color/onSurface"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/miniArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Artist Name"
+                android:textSize="12sp"
+                android:textColor="@color/onSurfaceVariant"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <!-- Time Progress -->
+            <LinearLayout
+                android:id="@+id/timeProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="2dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/miniCurrentTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1:23"
+                    android:textSize="10sp"
+                    android:textColor="@color/primary" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/outlineVariant"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="4dp" />
+
+                <TextView
+                    android:id="@+id/miniTotalTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3:45"
+                    android:textSize="10sp"
+                    android:textColor="@color/onSurfaceVariant" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Controls -->
+        <LinearLayout
+            android:id="@+id/miniControls"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageButton
+                android:id="@+id/miniPrevious"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_previous"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/previous_song"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/miniPlayPause"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_pause"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/play_pause" />
+
+            <ImageButton
+                android:id="@+id/miniNext"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_next"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/next_song" />
+
+        </LinearLayout>
+
+        <!-- Volume Indicator -->
+        <SeekBar
+            android:id="@+id/miniVolumeSeek"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="70"
+            android:progressTint="@color/primary"
+            android:thumb="@drawable/ic_volume_slider_thumb"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="4dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

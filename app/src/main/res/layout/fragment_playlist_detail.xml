@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/surface">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.Material3.Dark">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimaryContainer"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:expandedTitleMarginStart="72dp"
+            app:expandedTitleMarginBottom="24dp"
+            app:expandedTitleTextAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.Material3.HeadlineSmall">
+
+            <!-- Playlist Cover Image with Gradient Overlay -->
+            <ImageView
+                android:id="@+id/playlistCover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/playlist_cover"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                tools:src="@drawable/bg_album_placeholder" />
+
+            <!-- Gradient Overlay -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_gradient_overlay"
+                app:layout_collapseMode="parallax" />
+
+            <!-- Toolbar -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:title="@string/playlist_details"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:menu="@menu/menu_playlist_detail" />
+
+            <!-- Playlist Info Overlay -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:orientation="vertical"
+                android:padding="24dp"
+                app:layout_collapseMode="parallax">
+
+                <TextView
+                    android:id="@+id/playlistTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Awesome Playlist"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@android:color/white"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="4" />
+
+                <TextView
+                    android:id="@+id/playlistDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="The best songs for coding"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@android:color/white"
+                    android:alpha="0.9"
+                    android:layout_marginTop="8dp"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+                <TextView
+                    android:id="@+id/playlistStats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• 50 songs • 2h 45m • Created by User"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:alpha="0.8"
+                    android:layout_marginTop="12dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Action Buttons Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShufflePlay"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="@string/shuffle_play"
+                    app:icon="@drawable/ic_shuffle"
+                    app:iconGravity="start"
+                    app:cornerRadius="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPlayAll"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/play_all"
+                    app:icon="@drawable/ic_play"
+                    app:iconGravity="start"
+                    app:cornerRadius="12dp" />
+
+                <ImageButton
+                    android:id="@+id/btnMoreOptions"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="12dp"
+                    android:src="@drawable/ic_more"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/more_options" />
+
+            </LinearLayout>
+
+            <!-- Songs Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/songs"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/onSurface" />
+
+                <TextView
+                    android:id="@+id/tvSongCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50 songs"
+                    android:textSize="14sp"
+                    android:textColor="@color/onSurfaceVariant" />
+
+                <ImageButton
+                    android:id="@+id/btnSortSongs"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_sort"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/sort_songs" />
+
+            </LinearLayout>
+
+            <!-- Songs List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/songsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_song_with_number" />
+
+            <!-- Add Songs Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddSongs"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/add_songs"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="start"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                app:cornerRadius="12dp" />
+
+            <!-- About This Playlist -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/outlineVariant"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_this_playlist"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/onSurface"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvPlaylistDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Created on January 10, 2024\nLast updated 2 days ago"
+                        android:textSize="14sp"
+                        android:textColor="@color/onSurfaceVariant"
+                        android:lineSpacingExtra="4dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Playlist Actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSharePlaylist"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/share"
+                    app:icon="@drawable/ic_share"
+                    app:iconGravity="start" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDownloadAll"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/download_all"
+                    app:icon="@drawable/ic_download"
+                    app:iconGravity="start" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDeletePlaylist"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:textColor="@color/error"
+                    app:icon="@drawable/ic_delete"
+                    app:iconTint="@color/error"
+                    app:iconGravity="start" />
+
+            </LinearLayout>
+
+            <!-- Spacer for bottom padding -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Action Button for Quick Actions -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_play"
+        app:backgroundTint="@color/primary"
+        app:tint="@color/onPrimary"
+        app:layout_anchor="@id/appBarLayout"
+        app:layout_anchorGravity="bottom|end" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

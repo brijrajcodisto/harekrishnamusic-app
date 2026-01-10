@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:paddingHorizontal="16dp">
+
+    <!-- Search Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:title="@string/search"
+        app:navigationIcon="@drawable/ic_arrow_back" />
+
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp">
+
+        <!-- Search Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchInputLayout"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_hint"
+            app:startIconDrawable="@drawable/ic_search"
+            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/ic_close">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Quick Filters Chips -->
+        <TextView
+            android:id="@+id/quickFiltersLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/quick_filters"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/onSurface"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/quickFiltersChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="false"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all"
+                app:checkedIconVisible="false" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSongs"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/songs"
+                app:checkedIconVisible="false" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipArtists"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/artists"
+                app:checkedIconVisible="false" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAlbums"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/albums"
+                app:checkedIconVisible="false" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPlaylists"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/playlists"
+                app:checkedIconVisible="false" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </LinearLayout>
+
+    <!-- Search Results Container (Visible when searching) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchResultsContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/searchContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Search Results Tabs -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/searchResultsTabLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/primary"
+            app:tabSelectedTextColor="@color/primary"
+            app:tabTextColor="@color/onSurfaceVariant"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/songs" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/artists" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/albums" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/playlists" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <!-- Search Results ViewPager -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/searchResultsViewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/searchResultsTabLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Loading Indicator -->
+        <ProgressBar
+            android:id="@+id/searchLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- No Results View -->
+        <LinearLayout
+            android:id="@+id/noResultsView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_search_no_results"
+                android:contentDescription="@string/no_results"
+                android:tint="@color/onSurfaceVariant" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_results_found"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/onSurface"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/try_different_search"
+                android:textSize="14sp"
+                android:textColor="@color/onSurfaceVariant"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Browse Categories Container (Visible when not searching) -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/browseContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/searchContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
+
+            <!-- Recent Searches -->
+            <LinearLayout
+                android:id="@+id/recentSearchesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/recentSearchesLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/recent_searches"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/onSurface" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearRecent"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/clear_all" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recentSearchesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    tools:listitem="@layout/item_recent_search" />
+
+            </LinearLayout>
+
+            <!-- Browse Categories -->
+            <TextView
+                android:id="@+id/browseCategoriesLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/browse_categories"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/onSurface"
+                android:layout_marginTop="24dp" />
+
+            <!-- Top Genres Grid -->
+            <TextView
+                android:id="@+id/topGenresLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/top_genres"
+                android:textSize="16sp"
+                android:textColor="@color/onSurfaceVariant"
+                android:layout_marginTop="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topGenresRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
+
+            <!-- Moods & Activities -->
+            <TextView
+                android:id="@+id/moodsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/moods_activities"
+                android:textSize="16sp"
+                android:textColor="@color/onSurfaceVariant"
+                android:layout_marginTop="24dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/moodsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
+
+            <!-- Popular Searches -->
+            <TextView
+                android:id="@+id/popularSearchesLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/popular_searches"
+                android:textSize="16sp"
+                android:textColor="@color/onSurfaceVariant"
+                android:layout_marginTop="24dp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/popularSearchesChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPopular1"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Top 50 Global"
+                    app:chipIcon="@drawable/ic_trending_up" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPopular2"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Releases"
+                    app:chipIcon="@drawable/ic_new_releases" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPopular3"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chill Vibes"
+                    app:chipIcon="@drawable/ic_mood" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPopular4"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Workout"
+                    app:chipIcon="@drawable/ic_fitness" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPopular5"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study Focus"
+                    app:chipIcon="@drawable/ic_school" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPopular6"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Party"
+                    app:chipIcon="@drawable/ic_party" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Trending Now -->
+            <TextView
+                android:id="@+id/trendingNowLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/trending_now"
+                android:textSize="16sp"
+                android:textColor="@color/onSurfaceVariant"
+                android:layout_marginTop="24dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trendingRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="80dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

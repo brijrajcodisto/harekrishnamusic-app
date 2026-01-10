@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:background="?attr/selectableItemBackground"
+    android:paddingStart="16dp"
+    android:paddingEnd="8dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Album Art with Download Badge -->
+    <FrameLayout
+        android:id="@+id/albumArtContainer"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/albumArt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/song_album_art"
+            android:background="@drawable/bg_album_placeholder"
+            tools:src="@drawable/bg_album_placeholder" />
+
+        <!-- Download Indicator -->
+        <ImageView
+            android:id="@+id/downloadIndicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_download"
+            android:background="@drawable/bg_download_badge"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="4dp"
+            android:contentDescription="@string/downloaded"
+            app:tint="@color/primary" />
+
+    </FrameLayout>
+
+    <!-- Song Title -->
+    <TextView
+        android:id="@+id/songTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Song Title"
+        android:textSize="16sp"
+        android:textColor="@color/onSurface"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/albumArtContainer"
+        app:layout_constraintTop_toTopOf="@id/albumArtContainer"
+        app:layout_constraintEnd_toStartOf="@id/downloadStatus"
+        android:layout_marginStart="12dp" />
+
+    <!-- Artist Name -->
+    <TextView
+        android:id="@+id/artistName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Artist Name"
+        android:textSize="14sp"
+        android:textColor="@color/onSurfaceVariant"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/albumArtContainer"
+        app:layout_constraintTop_toBottomOf="@id/songTitle"
+        app:layout_constraintEnd_toStartOf="@id/downloadProgress"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="2dp" />
+
+    <!-- Download Status -->
+    <TextView
+        android:id="@+id/downloadStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/downloaded"
+        android:textSize="12sp"
+        android:textColor="@color/primary"
+        app:layout_constraintEnd_toStartOf="@id/btnMore"
+        app:layout_constraintTop_toTopOf="@id/songTitle"
+        app:layout_constraintBottom_toTopOf="@id/artistName"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Download Progress (for downloading songs) -->
+    <ProgressBar
+        android:id="@+id/downloadProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:progress="75"
+        android:progressTint="@color/primary"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/albumArtContainer"
+        app:layout_constraintEnd_toStartOf="@id/downloadPercentage"
+        app:layout_constraintTop_toBottomOf="@id/artistName"
+        app:layout_constraintBottom_toBottomOf="@id/albumArtContainer"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Download Percentage -->
+    <TextView
+        android:id="@+id/downloadPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="75%"
+        android:textSize="12sp"
+        android:textColor="@color/primary"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/btnMore"
+        app:layout_constraintTop_toTopOf="@id/downloadProgress"
+        app:layout_constraintBottom_toBottomOf="@id/downloadProgress"
+        android:layout_marginStart="8dp" />
+
+    <!-- More Options -->
+    <ImageButton
+        android:id="@+id/btnMore"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_more"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/more_options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Offline Indicator -->
+    <ImageView
+        android:id="@+id/offlineIndicator"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_offline"
+        android:visibility="gone"
+        android:contentDescription="@string/offline"
+        app:layout_constraintStart_toEndOf="@id/albumArtContainer"
+        app:layout_constraintTop_toTopOf="@id/artistName"
+        app:layout_constraintBottom_toBottomOf="@id/artistName"
+        app:tint="@color/onSurfaceVariant" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

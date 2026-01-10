@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.BasicMusicPlayer" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorPrimaryContainer">@color/primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/onPrimaryContainer</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorSecondaryContainer">@color/secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/onSecondaryContainer</item>
+
+        <!-- Surface colors -->
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorSurfaceVariant">@color/surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/onSurfaceVariant</item>
+
+        <!-- Error color -->
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/onError</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <!-- Navigation bar -->
+        <item name="android:navigationBarColor" tools:targetApi="o">?attr/colorSurface</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o">true</item>
+
+        <!-- Window background -->
+        <item name="android:windowBackground">@color/surface</item>
+
+        <!-- Material 3 specific -->
+        <item name="materialThemeOverlay">@style/ThemeOverlay.BasicMusicPlayer</item>
+    </style>
+
+    <!-- Theme overlay for AppBar -->
+    <style name="ThemeOverlay.BasicMusicPlayer" parent="">
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+    </style>
+
+    <!-- Theme overlay for dark mode -->
+    <style name="ThemeOverlay.BasicMusicPlayer.Dark" parent="ThemeOverlay.Material3.Dark">
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+    </style>
+
+</resources>
