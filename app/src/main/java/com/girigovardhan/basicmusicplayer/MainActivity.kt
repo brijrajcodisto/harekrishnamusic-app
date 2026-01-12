@@ -1,69 +1,60 @@
 package com.girigovardhan.basicmusicplayer
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.girigovardhan.basicmusicplayer.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.girigovardhan.basicmusicplayer.ui.components.MiniPlayer
+import com.girigovardhan.basicmusicplayer.ui.screen.HomeScreen
+import com.girigovardhan.basicmusicplayer.ui.screen.PlayerScreen
+import com.girigovardhan.basicmusicplayer.ui.theme.BasicMusicPlayerTheme
+import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var navController: NavController
+class MainActivity : ComponentActivity() {
+    private val viewModel: MusicViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.initController(this)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContent {
+            BasicMusicPlayerTheme {
+                val navController = rememberNavController()
 
-        // 1. Set the Toolbar as the ActionBar
-        // Ensure you use binding.topAppBar (or whatever ID you gave it in activity_main.xml)
-        setSupportActionBar(binding.topAppBar)
-
-        // 2. Setup Navigation
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
-
-        // 3. Link the ActionBar to the NavController
-        setupActionBarWithNavController(navController)
-
-        binding.bottomNavigation.setupWithNavController(navController)
-
-        setupNavigation()
-    }
-
-    private fun setupNavigation() {
-        // Get the NavHostFragment
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        // Define the top-level destinations for the app
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.homeFragment,
-                R.id.searchFragment,
-                R.id.libraryFragment
-            )
-        )
-
-        // Setup the ActionBar with the NavController and the appBarConfiguration
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        // Setup the BottomNavigationView with the NavController
-        binding.bottomNavigation.setupWithNavController(navController)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        return navHostFragment.navController.navigateUp() || super.onSupportNavigateUp()
+                // Scaffold provides the structure for top bars and bottom bars
+                Scaffold(
+                    bottomBar = {
+                        MiniPlayer(
+                            viewModel = viewModel,
+                            onClick = { navController.navigate("player") }
+                        )
+                    }
+                ) { innerPadding ->
+                    // Apply innerPadding so the NavHost content isn't hidden by the MiniPlayer
+                    NavHost(
+                        navController = navController,
+                        startDestination = "home",
+                        modifier = Modifier.padding(innerPadding)
+                    ) {
+                        composable("home") {
+                            HomeScreen(viewModel = viewModel, onSongClick = {
+                                // We don't necessarily have to navigate to player anymore
+                                // because the MiniPlayer will appear!
+                            })
+                        }
+                        composable("player") {
+                            PlayerScreen(viewModel = viewModel)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
