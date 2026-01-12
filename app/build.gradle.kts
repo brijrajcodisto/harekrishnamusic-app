@@ -1,8 +1,12 @@
 
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.plugin.compose")
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
 android {
@@ -41,6 +45,29 @@ android {
         compose = true
         viewBinding = true
         dataBinding = true
+        buildConfig = true
+    }
+
+    // Load the properties file
+    val localProperties = Properties()
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localProperties.load(FileInputStream(localPropertiesFile))
+    }
+
+    defaultConfig {
+        // Create the BuildConfig field
+        // Syntax: buildConfigField("Type", "Name", "Value")
+        buildConfigField(
+            "String",
+            "MUSIC_API_KEY",
+            localProperties.getProperty("MUSIC_API_KEY") ?: "\"fallback_key\""
+        )
+        buildConfigField(
+            "String",
+            "MUSIC_API_SECRET",
+            localProperties.getProperty("MUSIC_API_SECRET") ?: "\"fallback_key\""
+        )
     }
 }
 val media3Version = "1.2.0"
@@ -76,6 +103,14 @@ dependencies {
     // Required for activityViewModels() and viewModels() in Fragments
     implementation("androidx.fragment:fragment-ktx:1.8.5")
 
+    val ktorVersion = "2.3.7"
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-android:$ktorVersion")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+
+    implementation("io.ktor:ktor-client-logging:${ktorVersion}")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     // Import the Compose BOM
     implementation(platform("androidx.compose:compose-bom:2024.02.00"))
 }

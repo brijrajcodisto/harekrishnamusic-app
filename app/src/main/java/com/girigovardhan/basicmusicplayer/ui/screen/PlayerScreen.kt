@@ -28,7 +28,7 @@ fun PlayerScreen(viewModel: MusicViewModel) {
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(text = song?.title ?: "Select a Song", style = MaterialTheme.typography.headlineMedium)
-        Text(text = song?.subtitle ?: "Artist", style = MaterialTheme.typography.bodyLarge)
+        // Text(text = song?.subtitle ?: "Artist", style = MaterialTheme.typography.bodyLarge)
 
         Spacer(modifier = Modifier.height(32.dp))
 

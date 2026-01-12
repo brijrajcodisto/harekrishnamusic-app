@@ -40,7 +40,7 @@ fun SongItem(
         ) {
             // Album Art Loading via Coil
             AsyncImage(
-                model = song.iconUrl,
+                model = song.coverUrl,
                 contentDescription = "Album Art",
                 modifier = Modifier
                     .size(56.dp)
@@ -61,13 +61,13 @@ fun SongItem(
                     overflow = TextOverflow.Ellipsis
                 )
 
-                Text(
-                    text = song.subtitle,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+//                Text(
+//                    text = song.subtitle,
+//                    style = MaterialTheme.typography.bodyMedium,
+//                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+//                    maxLines = 1,
+//                    overflow = TextOverflow.Ellipsis
+//                )
             }
         }
     }

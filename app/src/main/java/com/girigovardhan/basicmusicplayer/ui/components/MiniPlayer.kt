@@ -73,7 +73,7 @@ fun MiniPlayer(
                 // ... (Album Art and Song Info same as before)
 
                 AsyncImage(
-                    model = currentSong.iconUrl,
+                    model = currentSong.coverUrl,
                     contentDescription = null,
                     modifier = Modifier.size(40.dp).clip(RoundedCornerShape(4.dp)),
                     contentScale = ContentScale.Crop
@@ -83,7 +83,7 @@ fun MiniPlayer(
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(text = currentSong.title, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, maxLines = 1)
-                    Text(text = currentSong.subtitle, style = MaterialTheme.typography.bodySmall, maxLines = 1)
+                    // Text(text = currentSong.subtitle, style = MaterialTheme.typography.bodySmall, maxLines = 1)
                 }
 
                 IconButton(onClick = { viewModel.togglePlayPause() }) {

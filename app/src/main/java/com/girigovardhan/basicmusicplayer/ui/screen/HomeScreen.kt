@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
+import com.girigovardhan.basicmusicplayer.ui.components.HomeTopBar
 import com.girigovardhan.basicmusicplayer.ui.components.SongItem
 import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
 
@@ -17,15 +18,21 @@ fun HomeScreen(
     viewModel: MusicViewModel,
     onSongClick: () -> Unit
 ) {
-    val repository = MusicRepository()
-    val songs = repository.getSongs()
-
+    val songs = viewModel.songs.value
+    val isLoading = viewModel.isLoading.value
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(title = { Text("My Library") })
+            HomeTopBar(
+                onSearchClick = {
+                    // Handle search click (e.g., navigate to search screen)
+                    android.util.Log.d("Navigation", "Search Clicked")
+                }
+            )
         }
     ) { padding ->
-        LazyColumn(modifier = Modifier.padding(padding)) {
+        LazyColumn(modifier = Modifier
+            .fillMaxSize()
+            .padding(padding)) {
             items(songs) { song ->
                 SongItem(
                     song = song,
