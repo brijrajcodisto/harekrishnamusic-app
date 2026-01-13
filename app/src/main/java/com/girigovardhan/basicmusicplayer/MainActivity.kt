@@ -54,8 +54,8 @@ class MainActivity : ComponentActivity() {
             }
 
             defaultRequest {
-                header("X-API-Key", BuildConfig.MUSIC_API_KEY) // BuildConfig.MUSIC_API_KEY
-                header("X-API-Secret", BuildConfig.MUSIC_API_SECRET) // BuildConfig.MUSIC_API_SECRET
+                header("X-API-Key", BuildConfig.MUSIC_API_KEY)
+                header("X-API-Secret", BuildConfig.MUSIC_API_SECRET)
                 // Optional: If your API also requires Content-Type
                 header("Content-Type", "application/json")
             }

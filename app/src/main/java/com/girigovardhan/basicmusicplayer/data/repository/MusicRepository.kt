@@ -1,6 +1,7 @@
 package com.girigovardhan.basicmusicplayer.data.repository
 
 import androidx.paging.PagingSource
+import com.girigovardhan.basicmusicplayer.BuildConfig
 import com.girigovardhan.basicmusicplayer.data.local.MusicPrefs
 import com.girigovardhan.basicmusicplayer.data.model.Song
 import io.ktor.client.*
@@ -25,7 +26,7 @@ class MusicRepository(
 
     suspend fun getSongs(): List<Song> {
         return try {
-            return client.get("http://10.0.2.2:3001/tracks").body()
+            return client.get(BuildConfig.MUSIC_API_URL + "/tracks").body()
         } catch (e: Exception) {
             android.util.Log.e("MusicRepository", "Serialization Error: ${e.message}")
             emptyList()
@@ -36,7 +37,7 @@ class MusicRepository(
         _isSyncing.value = true
         try {
 
-            val versionResponse: VersionResponse = client.get("http://10.0.2.2:3001/tracks/version").body()
+            val versionResponse: VersionResponse = client.get(BuildConfig.MUSIC_API_URL + "/version").body()
             val remoteVersion = versionResponse.version.trim()
 
             if (remoteVersion == musicPrefs.getLocalVersion()) {
@@ -44,7 +45,7 @@ class MusicRepository(
                 return
             }
 
-            val response: List<SongDto> = client.get("http://10.0.2.2:3001/tracks?limit=999999").body()
+            val response: List<SongDto> = client.get(BuildConfig.MUSIC_API_URL + "/tracks?limit=999999").body()
 
             // Map DTOs to Entities
             val entities = response.map { dto ->

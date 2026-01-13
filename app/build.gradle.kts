@@ -62,6 +62,11 @@ android {
         // Syntax: buildConfigField("Type", "Name", "Value")
         buildConfigField(
             "String",
+            "MUSIC_API_URL",
+            localProperties.getProperty("MUSIC_API_URL") ?: "\"fallback_url\""
+        )
+        buildConfigField(
+            "String",
             "MUSIC_API_KEY",
             localProperties.getProperty("MUSIC_API_KEY") ?: "\"fallback_key\""
         )
