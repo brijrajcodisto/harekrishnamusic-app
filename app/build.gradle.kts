@@ -76,6 +76,18 @@ android {
             localProperties.getProperty("MUSIC_API_SECRET") ?: "\"fallback_key\""
         )
     }
+
+    signingConfigs {
+        create("release") {
+            val keystorePath = localProperties.getProperty("KEYSTORE_PATH", System.getenv("KEYSTORE_PATH") ?: "")
+            if (keystorePath.isNotEmpty() && file(keystorePath).exists()) {
+                storeFile = file(keystorePath)
+                storePassword = localProperties.getProperty("KEYSTORE_PASSWORD", System.getenv("KEYSTORE_PASSWORD") ?: "")
+                keyAlias = localProperties.getProperty("KEY_ALIAS", System.getenv("KEY_ALIAS") ?: "")
+                keyPassword = localProperties.getProperty("KEY_PASSWORD", System.getenv("KEY_PASSWORD") ?: "")
+            }
+        }
+    }
 }
 val media3Version = "1.2.0"
 dependencies {
