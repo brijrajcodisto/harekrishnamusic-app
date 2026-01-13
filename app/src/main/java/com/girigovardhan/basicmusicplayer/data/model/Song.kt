@@ -1,35 +1,47 @@
 package com.girigovardhan.basicmusicplayer.data.model
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.SerialName
+
+import android.annotation.SuppressLint
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
+// --- DTO: Used ONLY for Ktor/JSON ---
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
+data class SongDto(
+    val id: String,
+    val title: String,
+    val streamUrl: String,
+    val artist: ArtistDto? = null,
+    val album: AlbumDto? = null,
+    val isLive: Boolean = false,
+    val duration: Int? = 0
+)
+
+@SuppressLint("UnsafeOptInUsageError")
+@Serializable
+data class ArtistDto(val name: String? = null)
+
+@SuppressLint("UnsafeOptInUsageError")
+@Serializable
+data class AlbumDto(val title: String? = null, val coverUrl: String? = null)
+
+@SuppressLint("UnsafeOptInUsageError")
+@Serializable
+data class VersionResponse(
+    val version: String
+)
+
+// --- Entity: Used ONLY for Room Database ---
+// REMOVE @Serializable FROM HERE
 @Entity(tableName = "songs")
 data class Song(
     @PrimaryKey val id: String,
     val title: String,
-    val artistId: String? = null,    // Null in JSON
-    val albumId: String? = null,
-    val duration: Int? = 0,
-    val coverUrl: String? = null,   // Null in JSON
-
-    // We map streamUrl from JSON to streamUrl in Kotlin
     val streamUrl: String,
-
-    val lyrics: String? = null,
-    val isLive: Boolean = false,
-    val artist: String? = null,     // Null in JSON
-
-    // Nested object: If you don't need it, ignoreUnknownKeys will skip it,
-    // but including it as nullable makes the parser more stable.
-    // val album: Album? = null
-)
-
-@Serializable
-data class Album(
-    val id: String,
-    val title: String,
-    val artistId: String? = null,
-    val coverUrl: String? = null
+    val artistName: String?,  // Flattened from ArtistDto
+    val albumTitle: String?,   // Flattened from AlbumDto
+    val coverUrl: String?,
+    val isLive: Boolean,
+    val duration: Int?
 )

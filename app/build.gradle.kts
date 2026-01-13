@@ -112,15 +112,21 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
     implementation("io.ktor:ktor-client-logging:${ktorVersion}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-paging:${roomVersion}")
+// Use the variable
     // kapt("androidx.room:room-compiler:$roomVersion")
 
     ksp("androidx.room:room-compiler:$roomVersion")
 
+    val pagingVersion = "3.3.0"
+    implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
+    implementation("androidx.paging:paging-compose:$pagingVersion")
+    implementation("androidx.room:room-paging:2.6.1")
 
     // Import the Compose BOM
     implementation(platform("androidx.compose:compose-bom:2024.02.00"))

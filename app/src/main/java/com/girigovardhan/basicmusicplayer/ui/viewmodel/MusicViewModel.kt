@@ -13,6 +13,10 @@ import com.girigovardhan.basicmusicplayer.playback.service.MusicService
 import com.girigovardhan.basicmusicplayer.data.model.Song
 import com.google.common.util.concurrent.MoreExecutors
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.Pager
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
@@ -22,6 +26,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.*
+import androidx.paging.PagingConfig
 
 class MusicViewModel(private val repository: MusicRepository) : ViewModel() {
 
@@ -31,24 +39,43 @@ class MusicViewModel(private val repository: MusicRepository) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
 
+    val isSyncing = repository.isSyncing
+
     // 2. State for Loading UI
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    val songs: StateFlow<List<Song>> = repository.allSongs // From Room
-        .combine(_searchQuery) { allSongs, query ->
-            if (query.isBlank()) {
-                allSongs
-            } else {
-                allSongs.filter { song ->
-                    song.title.contains(query, ignoreCase = true) ||
-                            song.artist?.contains(query, ignoreCase = true) == true
+    @OptIn( FlowPreview::class, ExperimentalCoroutinesApi::class)
+    val pagedSongs: Flow<PagingData<Song>> = _searchQuery
+        .debounce(300)
+        .flatMapLatest { query ->
+            Pager(
+                config = PagingConfig(
+                    pageSize = 20,          // Chunks of 20 songs
+                    prefetchDistance = 5,   // Start loading next page when 5 items from bottom
+                    enablePlaceholders = false
+                ),
+                pagingSourceFactory = {
+                    if (query.isBlank()) repository.getAllSongsPaged()
+                    else repository.searchSongsPaged(query)
                 }
+            ).flow
+        }
+        .cachedIn(viewModelScope) // Important: keeps the scroll position during configuration changes
+
+    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class) // Add this here
+    val songs: StateFlow<List<Song>> = _searchQuery
+        .debounce(300) // Wait 300ms after typing stops to save battery/CPU
+        .flatMapLatest { query ->
+            if (query.isBlank()) {
+                repository.allSongs // Show all songs if search is empty
+            } else {
+                repository.searchSongs(query) // Show filtered songs
             }
         }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000), // Keeps flow alive for 5s after UI is gone
+            started = SharingStarted.WhileSubscribed(5000),
             initialValue = emptyList()
         )
 
@@ -113,12 +140,16 @@ class MusicViewModel(private val repository: MusicRepository) : ViewModel() {
 
     fun refreshData() {
         viewModelScope.launch {
-            repository.refreshSongs()
+            _isLoading.value = true
+            repository.refreshSongs() // Fetches from Ktor and saves to Room
+            _isLoading.value = false
         }
     }
 
     fun onSearchQueryChange(newQuery: String) {
+        _isLoading.value = true
         _searchQuery.value = newQuery
+        _isLoading.value = false
     }
 
     fun seekTo(position: Float) {

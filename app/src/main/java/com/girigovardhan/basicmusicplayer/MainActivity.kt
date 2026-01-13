@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.girigovardhan.basicmusicplayer.data.local.MusicDatabase
+import com.girigovardhan.basicmusicplayer.data.local.MusicPrefs
 import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
 import com.girigovardhan.basicmusicplayer.ui.components.MiniPlayer
 import com.girigovardhan.basicmusicplayer.ui.screen.HomeScreen
@@ -39,6 +40,7 @@ class MainActivity : ComponentActivity() {
         // 1. Create the Database using the Activity Context (Safely)
         val database = MusicDatabase.getDatabase(applicationContext)
         val songDao = database.songDao()
+        val musicPrefs = MusicPrefs(applicationContext)
 
         // 2. Create the Network Client
         val client = HttpClient(Android) {
@@ -69,7 +71,7 @@ class MainActivity : ComponentActivity() {
         }
 
         // 3. Create the Repository
-        val repository = MusicRepository(songDao, client)
+        val repository = MusicRepository(songDao, client, musicPrefs)
 
         // 4. Create the ViewModel via the Factory
         val viewModel: MusicViewModel by viewModels {

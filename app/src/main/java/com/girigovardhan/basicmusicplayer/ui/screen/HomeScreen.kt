@@ -14,6 +14,8 @@ import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
 import com.girigovardhan.basicmusicplayer.ui.components.HomeTopBar
 import com.girigovardhan.basicmusicplayer.ui.components.SongItem
 import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey // Also useful for LazyColumn keys
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,14 +26,14 @@ fun HomeScreen(
     val songs by viewModel.songs.collectAsState()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
+    val pagedSongs = viewModel.pagedSongs.collectAsLazyPagingItems()
+    val isSyncing by viewModel.isSyncing.collectAsState()
 
     Scaffold(
         topBar = {
             HomeTopBar(
-                onSearchClick = {
-                    // Handle search click (e.g., navigate to search screen)
-                    android.util.Log.d("Navigation", "Search Clicked")
-                }
+                query = searchQuery,
+                onQueryChange = { viewModel.onSearchQueryChange(it) }
             )
         }
     ) { padding ->
