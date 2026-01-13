@@ -3,7 +3,6 @@ package com.girigovardhan.basicmusicplayer.ui.viewmodel
 import android.content.ComponentName
 import android.content.Context
 import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.media3.common.MediaItem
@@ -17,16 +16,42 @@ import androidx.lifecycle.viewModelScope
 import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 
-class MusicViewModel : ViewModel() {
+class MusicViewModel(private val repository: MusicRepository) : ViewModel() {
 
-    // 1. Initialize repository here
-    private val repository = MusicRepository()
+    private val _allSongs = mutableStateOf<List<Song>>(emptyList())
 
-    private val _songs = mutableStateOf<List<Song>>(emptyList())
-    val songs: State<List<Song>> = _songs
-    private val _isLoading = mutableStateOf(false)
-    val isLoading: State<Boolean> = _isLoading
+    // 1. Track the search query as a Flow
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
+
+    // 2. State for Loading UI
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
+
+    val songs: StateFlow<List<Song>> = repository.allSongs // From Room
+        .combine(_searchQuery) { allSongs, query ->
+            if (query.isBlank()) {
+                allSongs
+            } else {
+                allSongs.filter { song ->
+                    song.title.contains(query, ignoreCase = true) ||
+                            song.artist?.contains(query, ignoreCase = true) == true
+                }
+            }
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000), // Keeps flow alive for 5s after UI is gone
+            initialValue = emptyList()
+        )
+
     private var controller: MediaController? = null
     var isPlaying = mutableStateOf(false)
     var currentSong = mutableStateOf<Song?>(null)
@@ -42,7 +67,7 @@ class MusicViewModel : ViewModel() {
 
     init {
         // Fetch songs automatically when ViewModel is created
-        loadSongs()
+        refreshData()
     }
 
     fun initController(context: Context) {
@@ -86,18 +111,14 @@ class MusicViewModel : ViewModel() {
         }
     }
 
-    fun loadSongs() {
-        // 1. Create a coroutine scope
+    fun refreshData() {
         viewModelScope.launch {
-            try {
-                // 2. Now you can safely call the suspend function
-                val result = repository.getSongs()
-                _songs.value = result
-            } catch (e: Exception) {
-                // 3. Handle network errors here
-                _songs.value = emptyList()
-            }
+            repository.refreshSongs()
         }
+    }
+
+    fun onSearchQueryChange(newQuery: String) {
+        _searchQuery.value = newQuery
     }
 
     fun seekTo(position: Float) {

@@ -5,6 +5,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
@@ -18,8 +21,10 @@ fun HomeScreen(
     viewModel: MusicViewModel,
     onSongClick: () -> Unit
 ) {
-    val songs = viewModel.songs.value
-    val isLoading = viewModel.isLoading.value
+    val songs by viewModel.songs.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+
     Scaffold(
         topBar = {
             HomeTopBar(
@@ -30,18 +35,39 @@ fun HomeScreen(
             )
         }
     ) { padding ->
-        LazyColumn(modifier = Modifier
-            .fillMaxSize()
-            .padding(padding)) {
-            items(songs) { song ->
-                SongItem(
-                    song = song,
-                    onClick = {
-                        viewModel.playSong(it)
-                        onSongClick()
+        Box(modifier = Modifier.padding(padding)) {
+            if (songs.isEmpty() && !isLoading) {
+                // Empty State
+                EmptyLibraryContent(searchQuery)
+            } else {
+                // List of Songs
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    items(songs, key = { it.id }) { song ->
+                        SongItem(
+                            song = song,
+                            onClick = {
+                                viewModel.playSong(song)
+                                onSongClick()
+                            }
+                        )
                     }
-                )
+                }
+            }
+
+            // Loading Overlay
+            if (isLoading) {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
         }
+    }
+}
+
+@Composable
+fun EmptyLibraryContent(query: String) {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text(
+            text = if (query.isEmpty()) "No songs in your library" else "No results for \"$query\"",
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
