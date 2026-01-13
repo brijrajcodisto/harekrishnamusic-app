@@ -14,9 +14,10 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.util.reflect.typeInfo
+import com.girigovardhan.basicmusicplayer.data.local.SongDao
 
 class MusicRepository {
-
+    // private val songDao: SongDao
     private val client = HttpClient(Android) {
         // This plugin handles converting JSON to your Song objects automatically
         install(ContentNegotiation) {

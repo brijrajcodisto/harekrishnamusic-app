@@ -111,6 +111,12 @@ dependencies {
 
     implementation("io.ktor:ktor-client-logging:${ktorVersion}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    // kapt("androidx.room:room-compiler:$roomVersion")
+
     // Import the Compose BOM
     implementation(platform("androidx.compose:compose-bom:2024.02.00"))
 }

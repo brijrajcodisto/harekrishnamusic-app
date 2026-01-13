@@ -18,39 +18,61 @@ import com.girigovardhan.basicmusicplayer.ui.theme.BasicMusicPlayerTheme
 import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
 
 class MainActivity : ComponentActivity() {
+
     private val viewModel: MusicViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         viewModel.initController(this)
 
         setContent {
             BasicMusicPlayerTheme {
+                // 1. Create the driver
                 val navController = rememberNavController()
 
-                // Scaffold provides the structure for top bars and bottom bars
+                // 2. Observe the current song for the MiniPlayer
+                val currentSong = viewModel.currentSong.value
+
                 Scaffold(
                     bottomBar = {
-                        MiniPlayer(
-                            viewModel = viewModel,
-                            onClick = { navController.navigate("player") }
-                        )
+                        // Show MiniPlayer only if a song is loaded
+                        if (currentSong != null) {
+                            MiniPlayer(
+                                viewModel = viewModel,
+                                onClick = {
+                                    // Use the driver to change the screen
+                                    navController.navigate("player")
+                                }
+                            )
+                        }
                     }
                 ) { innerPadding ->
-                    // Apply innerPadding so the NavHost content isn't hidden by the MiniPlayer
+                    // 3. Define the Container (NavHost)
                     NavHost(
                         navController = navController,
                         startDestination = "home",
                         modifier = Modifier.padding(innerPadding)
                     ) {
+                        // Route: Home Screen
                         composable("home") {
-                            HomeScreen(viewModel = viewModel, onSongClick = {
-                                // We don't necessarily have to navigate to player anymore
-                                // because the MiniPlayer will appear!
-                            })
+                            HomeScreen(
+                                viewModel = viewModel,
+                                onSongClick = {
+                                    navController.navigate("player")
+                                }
+                            )
                         }
+
+                        // Route: Full Player Screen
                         composable("player") {
-                            PlayerScreen(viewModel = viewModel)
+                            PlayerScreen(
+                                viewModel = viewModel,
+                                onBackClick = {
+                                    // Navigate back to Home
+                                    navController.popBackStack()
+                                }
+                            )
                         }
                     }
                 }

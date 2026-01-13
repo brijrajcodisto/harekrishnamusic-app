@@ -1,10 +1,13 @@
 package com.girigovardhan.basicmusicplayer.data.model
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Serializable
+@Entity(tableName = "songs")
 data class Song(
-    val id: String,
+    @PrimaryKey val id: String,
     val title: String,
     val artistId: String? = null,    // Null in JSON
     val albumId: String? = null,
@@ -20,7 +23,7 @@ data class Song(
 
     // Nested object: If you don't need it, ignoreUnknownKeys will skip it,
     // but including it as nullable makes the parser more stable.
-    val album: Album? = null
+    // val album: Album? = null
 )
 
 @Serializable
