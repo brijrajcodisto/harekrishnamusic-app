@@ -12,11 +12,11 @@ plugins {
 }
 
 android {
-    namespace = "com.girigovardhan.basicmusicplayer"
+    namespace = "com.girigovardhan.sravanam"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.girigovardhan.basicmusicplayer"
+        applicationId = "com.girigovardhan.sravanam"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

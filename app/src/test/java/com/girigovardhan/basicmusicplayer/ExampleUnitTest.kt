@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer
+package com.girigovardhan.sravanam
 
 import org.junit.Test
 

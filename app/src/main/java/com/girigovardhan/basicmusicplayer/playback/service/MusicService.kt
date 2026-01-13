@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.playback.service
+package com.girigovardhan.sravanam.playback.service
 
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession

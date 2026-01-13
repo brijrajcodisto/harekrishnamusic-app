@@ -1,8 +1,8 @@
-package com.girigovardhan.basicmusicplayer.ui.viewmodel
+package com.girigovardhan.sravanam.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
+import com.girigovardhan.sravanam.data.repository.MusicRepository
 
 class MusicViewModelFactory(private val repository: MusicRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

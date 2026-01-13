@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.ui.components
+package com.girigovardhan.sravanam.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
+import com.girigovardhan.sravanam.ui.viewmodel.MusicViewModel
 
 @Composable
 fun MiniPlayer(

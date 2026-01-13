@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.data.local
+package com.girigovardhan.sravanam.data.local
 
 import android.content.Context
 

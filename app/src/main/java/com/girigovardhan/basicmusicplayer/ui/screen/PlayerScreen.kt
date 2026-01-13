@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.ui.screen
+package com.girigovardhan.sravanam.ui.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
+import com.girigovardhan.sravanam.ui.viewmodel.MusicViewModel
 
 //@Composable
 //fun PlayerScreen(viewModel: MusicViewModel) {

@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer
+package com.girigovardhan.sravanam
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,15 +10,15 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.girigovardhan.basicmusicplayer.data.local.MusicDatabase
-import com.girigovardhan.basicmusicplayer.data.local.MusicPrefs
-import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
-import com.girigovardhan.basicmusicplayer.ui.components.MiniPlayer
-import com.girigovardhan.basicmusicplayer.ui.screen.HomeScreen
-import com.girigovardhan.basicmusicplayer.ui.screen.PlayerScreen
-import com.girigovardhan.basicmusicplayer.ui.theme.BasicMusicPlayerTheme
-import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
-import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModelFactory
+import com.girigovardhan.sravanam.data.local.MusicDatabase
+import com.girigovardhan.sravanam.data.local.MusicPrefs
+import com.girigovardhan.sravanam.data.repository.MusicRepository
+import com.girigovardhan.sravanam.ui.components.MiniPlayer
+import com.girigovardhan.sravanam.ui.screen.HomeScreen
+import com.girigovardhan.sravanam.ui.screen.PlayerScreen
+import com.girigovardhan.sravanam.ui.theme.BasicMusicPlayerTheme
+import com.girigovardhan.sravanam.ui.viewmodel.MusicViewModel
+import com.girigovardhan.sravanam.ui.viewmodel.MusicViewModelFactory
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

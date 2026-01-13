@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.ui.components
+package com.girigovardhan.sravanam.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons

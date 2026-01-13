@@ -1,15 +1,15 @@
-package com.girigovardhan.basicmusicplayer.data.repository
+package com.girigovardhan.sravanam.data.repository
 
 import androidx.paging.PagingSource
-import com.girigovardhan.basicmusicplayer.BuildConfig
-import com.girigovardhan.basicmusicplayer.data.local.MusicPrefs
-import com.girigovardhan.basicmusicplayer.data.model.Song
+import com.girigovardhan.sravanam.BuildConfig
+import com.girigovardhan.sravanam.data.local.MusicPrefs
+import com.girigovardhan.sravanam.data.model.Song
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import com.girigovardhan.basicmusicplayer.data.local.SongDao
-import com.girigovardhan.basicmusicplayer.data.model.SongDto
-import com.girigovardhan.basicmusicplayer.data.model.VersionResponse
+import com.girigovardhan.sravanam.data.local.SongDao
+import com.girigovardhan.sravanam.data.model.SongDto
+import com.girigovardhan.sravanam.data.model.VersionResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

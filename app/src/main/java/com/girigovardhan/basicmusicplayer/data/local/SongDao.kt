@@ -1,10 +1,10 @@
-package com.girigovardhan.basicmusicplayer.data.local
+package com.girigovardhan.sravanam.data.local
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import com.girigovardhan.basicmusicplayer.data.model.Song
+import com.girigovardhan.sravanam.data.model.Song
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.ui.screen
+package com.girigovardhan.sravanam.ui.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,10 +10,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
-import com.girigovardhan.basicmusicplayer.ui.components.HomeTopBar
-import com.girigovardhan.basicmusicplayer.ui.components.SongItem
-import com.girigovardhan.basicmusicplayer.ui.viewmodel.MusicViewModel
+import com.girigovardhan.sravanam.data.repository.MusicRepository
+import com.girigovardhan.sravanam.ui.components.HomeTopBar
+import com.girigovardhan.sravanam.ui.components.SongItem
+import com.girigovardhan.sravanam.ui.viewmodel.MusicViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey // Also useful for LazyColumn keys
 

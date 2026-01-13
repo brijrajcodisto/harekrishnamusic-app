@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.data.model
+package com.girigovardhan.sravanam.data.model
 
 import android.annotation.SuppressLint
 import androidx.room.Entity

@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.ui.theme
+package com.girigovardhan.sravanam.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*

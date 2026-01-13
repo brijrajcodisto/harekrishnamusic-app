@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.playback
+package com.girigovardhan.sravanam.playback
 
 class MusicPlayerHandler {
 }

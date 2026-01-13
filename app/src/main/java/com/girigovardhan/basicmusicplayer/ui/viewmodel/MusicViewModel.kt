@@ -1,4 +1,4 @@
-package com.girigovardhan.basicmusicplayer.ui.viewmodel
+package com.girigovardhan.sravanam.ui.viewmodel
 
 import android.content.ComponentName
 import android.content.Context
@@ -9,15 +9,15 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
-import com.girigovardhan.basicmusicplayer.playback.service.MusicService
-import com.girigovardhan.basicmusicplayer.data.model.Song
+import com.girigovardhan.sravanam.playback.service.MusicService
+import com.girigovardhan.sravanam.data.model.Song
 import com.google.common.util.concurrent.MoreExecutors
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.girigovardhan.basicmusicplayer.data.repository.MusicRepository
+import com.girigovardhan.sravanam.data.repository.MusicRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
